@@ -5,6 +5,7 @@ namespace prog {
         r_ = 0;
         g_ = 0;
         b_ = 0;
+        // teste
     }
     Color::Color(const Color& other) {
         r_ = other.r_;
