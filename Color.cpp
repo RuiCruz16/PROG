@@ -10,6 +10,7 @@ namespace prog {
         r_ = other.r_;
         g_ = other.g_;
         b_ = other.b_;
+        // comentario
     }
     Color::Color(rgb_value red, rgb_value green, rgb_value blue) {
         r_ = red;
