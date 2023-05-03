@@ -9,7 +9,7 @@ namespace prog
   private: // TODO
     int width_;
     int height_;
-    std::vector<std::vector<Color>> imagem;
+    std::vector<std::vector<Color>> image;
   public:
     Image(int w, int h, const Color &fill = {255, 255, 255});
     ~Image();
