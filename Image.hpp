@@ -1,6 +1,9 @@
 #ifndef __prog_Image_hpp__
 #define __prog_Image_hpp__
 #include "Color.hpp"
+#include <vector>
+#include <iterator>
+using namespace std;
 
 namespace prog
 {
@@ -9,7 +12,7 @@ namespace prog
   private: // TODO
     int width_;
     int height_;
-    std::vector<std::vector<Color>> image;
+    vector<vector<Color>> imagem;
   public:
     Image(int w, int h, const Color &fill = {255, 255, 255});
     ~Image();
