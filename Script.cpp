@@ -74,14 +74,8 @@ namespace prog {
                 fill(x,y,w,h,c);
                 continue;
             }
-            if (command == "add") {
-                string filename;
-                int r, g, b, x, y;
-                input >> filename;
-                input >> r >> g >> b >> x >> y;
-                Color c;
-                c.red() = r, c.green() = g, c.blue() = b; 
-                add(filename,c,x,y);
+            if (command == "h_mirror") {
+                h_mirror();
                 continue;
             }
             // TODO ...
@@ -155,7 +149,13 @@ namespace prog {
             }
         }
     }
-    void add(const std::string &filename, Color c, int x, int y){
-        
+    void Script::h_mirror(){
+        for (int y = 0; y < image->height(); y++) // altura
+        {
+            for (int x = 0; x < image->width() / 2; x++) // largura
+            {
+                swap(image->at(x, y), image->at(image->width() - 1 - x, y));
+            } 
+        }
     }
 }
