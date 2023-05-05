@@ -82,6 +82,16 @@ namespace prog {
                 v_mirror();
                 continue;
             }
+            if (command == "add") {
+                string filename;
+                int r, g, b, x, y;
+                input >> filename;
+                input >> r >> g >> b >> x >> y;
+                Color c;
+                c.red() = r, c.green() = g, c.blue() = b; 
+                add(filename,c,x,y);
+                continue;
+            }
             if (command == "crop") {
                 int x, y, w, h;
                 input >> x >> y >> w >> h;
@@ -96,8 +106,6 @@ namespace prog {
                 rotate_left();
                 continue;
             }
-            // TODO ...
-
         }
     }
     void Script::open() {
@@ -185,14 +193,22 @@ namespace prog {
             } 
         }
     }
+    //void Script::add(const std::string &filename, Color c, int x, int y)
+
+    //void Script::crop(int x, int y, int w, int h)
+
     void Script::rotate_left(){
-        Image aux = image;
+        Image aux = image; // Tentar replicar a imagem (deu erro desta forma!)
         for (int i = 0; i < image->width(); i++)
         {
             for (int j = 0; j < image->height(); j++)
             {
-                image->at(image->width() - i,image->height() - i) = aux->at(i,j);
+                image->at(image->width() - i,image->height() - i) = aux->at(i,j); // A ideia é esta de igualar o pixel que vamos rodar pelo original!
+                // Podemos imaginar uma imagem cortada em 4 quadrantes iguais e que para situacao fazemos um if diferente por exemplo, o 1 quadrante estaria entre mais da metade do comprimento e menos da metade da altura!
             }
         }
+    }
+    void Script::rotate_right(){
+        // Mesma ideia do rotate left só que para a direita!
     }
 }
