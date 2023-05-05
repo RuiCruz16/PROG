@@ -48,8 +48,10 @@ namespace prog {
                 save();
                 continue;
             }
-            if (command == "invert") {
-                invert();
+            if (command == "replace") {
+                int r1, g1, b1, r2, g2, b2;
+                input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;
+                replace(r1, g1, b1, r2, g2, b2);
                 continue;
             } 
             // TODO ...
@@ -77,7 +79,9 @@ namespace prog {
         input >> filename;
         saveToPNG(filename, image);
     }
-    void Script::invert(){
-        cout << image->width();
+    void Script::replace(int r1, int g1, int b1, int r2, int g2, int b2){
+        r1 = r2;
+        g1 = g2;
+        b1 = b2;
     }
 }
