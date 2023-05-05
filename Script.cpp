@@ -82,6 +82,20 @@ namespace prog {
                 v_mirror();
                 continue;
             }
+            if (command == "crop") {
+                int x, y, w, h;
+                input >> x >> y >> w >> h;
+                crop(x,y,w,h);
+                continue;
+            }
+            if (command == "rotate_left") {
+                rotate_left();
+                continue;
+            }
+            if (command == "rotate_right") {
+                rotate_left();
+                continue;
+            }
             // TODO ...
 
         }
@@ -169,6 +183,16 @@ namespace prog {
             {
                 swap(image->at(x, y), image->at(x,image->height() -1 -y ));
             } 
+        }
+    }
+    void Script::rotate_left(){
+        Image aux = image;
+        for (int i = 0; i < image->width(); i++)
+        {
+            for (int j = 0; j < image->height(); j++)
+            {
+                image->at(image->width() - i,image->height() - i) = aux->at(i,j);
+            }
         }
     }
 }
