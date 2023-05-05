@@ -85,10 +85,10 @@ namespace prog {
     void Script::replace(Color c1, Color c2){
         for (int i = 0; i < image->width; i++)
         {
-            for (int j = 0; i < image->height; j++)
+            for (int j = 0; j < image->height; j++)
             {
                 if(image->at(i,j) == c1){
-                    image->at(i,j) == c2;
+                    image->at(i,j) = c2;
                 }
             }
         }
