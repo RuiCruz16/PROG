@@ -78,6 +78,10 @@ namespace prog {
                 h_mirror();
                 continue;
             }
+            if (command == "v_mirror") {
+                v_mirror();
+                continue;
+            }
             // TODO ...
 
         }
@@ -155,6 +159,15 @@ namespace prog {
             for (int x = 0; x < image->width() / 2; x++) // largura
             {
                 swap(image->at(x, y), image->at(image->width() - 1 - x, y));
+            } 
+        }
+    }
+    void Script::v_mirror(){
+        for (int y = 0; y < image->height() / 2; y++) // altura
+        {
+            for (int x = 0; x < image->width(); x++) // largura
+            {
+                swap(image->at(x, y), image->at(x,image->height() -1 -y ));
             } 
         }
     }
