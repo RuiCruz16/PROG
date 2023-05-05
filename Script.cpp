@@ -47,6 +47,10 @@ namespace prog {
             if (command == "save") {
                 save();
                 continue;
+            }
+            if (command == "invert") {
+                invert();
+                continue;
             } 
             // TODO ...
 
@@ -72,5 +76,8 @@ namespace prog {
         string filename;
         input >> filename;
         saveToPNG(filename, image);
+    }
+    void Script::invert(){
+        cout << image->width();
     }
 }

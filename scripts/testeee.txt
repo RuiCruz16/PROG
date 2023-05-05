@@ -1,0 +1,2 @@
+open input/escher-angels-demons.png
+invert

@@ -1,0 +1,1 @@
+https://www.techiedelight.com/initialize-two-dimensional-vector-cpp/ // Primeira função do image.cpp
