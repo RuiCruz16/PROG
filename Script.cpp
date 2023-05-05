@@ -49,9 +49,9 @@ namespace prog {
                 continue;
             }
             if (command == "replace") {
-                int r1, g1, b1, r2, g2, b2;
-                input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;
-                replace(r1, g1, b1, r2, g2, b2);
+                Color c1, c2;
+                input >> c1 >> c2;
+                image->replace(c1,c2);
                 continue;
             } 
             // TODO ...
@@ -79,9 +79,15 @@ namespace prog {
         input >> filename;
         saveToPNG(filename, image);
     }
-    void Script::replace(int r1, int g1, int b1, int r2, int g2, int b2){
-        r1 = r2;
-        g1 = g2;
-        b1 = b2;
+    void Script::replace(Color c1, Color c2){
+        for (int i = 0; i < image->width; i++)
+        {
+            for (int j = 0; i < image->height; j++)
+            {
+                if(image->at(i,j) == c1){
+                    image->at(i,j) == c2;
+                }
+            }
+        }
     }
 }
