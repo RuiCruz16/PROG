@@ -49,8 +49,11 @@ namespace prog {
                 continue;
             }
             if (command == "replace") {
+                int r1, g1, b1, r2, g2, b2;
+                input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;
                 Color c1, c2;
-                input >> c1 >> c2;
+                c1.red = r1, c1.green = g1, c1.blue = b1;
+                c2.red = r2, c2.green = g2, c2.blue = b2;
                 image->replace(c1,c2);
                 continue;
             } 
