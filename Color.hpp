@@ -15,6 +15,7 @@ namespace prog
       Color();
       Color(const Color& c);
       Color(rgb_value r, rgb_value g, rgb_value b);
+      static bool compare_colors(Color c1, Color c2);
       rgb_value red() const;
       rgb_value& red();
       rgb_value green() const;

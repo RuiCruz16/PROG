@@ -36,4 +36,10 @@ namespace prog {
     rgb_value Color::blue() const {
         return b_;
     }
+    bool Color::compare_colors(Color c1, Color c2){
+        if (c1.red() == c2.red() and c1.green() == c2.green() and c1.blue() == c2.blue())
+            return true;
+        else
+            return false;
+    }
 }

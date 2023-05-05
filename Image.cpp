@@ -7,7 +7,7 @@ namespace prog
   {
     width_ = w; // nº de colunas
     height_ = h; // nº de linhas
-    imagem = vector<vector<Color>>(h,vector<Color>(w,fill));
+    imagem = vector<vector<Color>>(w,vector<Color>(h,fill));
   }
   Image::~Image()
   {
@@ -23,10 +23,10 @@ namespace prog
   }
   Color& Image::at(int x, int y)
   {
-    return imagem[y][x];
+    return imagem[x][y];
   }
   const Color& Image::at(int x, int y) const
   {
-    return imagem[y][x];
+    return imagem[x][y];
   }
 }

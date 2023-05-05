@@ -3,6 +3,7 @@
 #include "Script.hpp"
 #include "PNG.hpp"
 #include "XPM2.hpp"
+#include "Color.hpp"
 
 using namespace std;
 
@@ -52,11 +53,27 @@ namespace prog {
                 int r1, g1, b1, r2, g2, b2;
                 input >> r1 >> g1 >> b1 >> r2 >> g2 >> b2;
                 Color c1, c2;
-                c1.red = r1, c1.green = g1, c1.blue = b1;
-                c2.red = r2, c2.green = g2, c2.blue = b2;
-                image->replace(c1,c2);
+                c1.red() = r1, c1.green() = g1, c1.blue() = b1;
+                c2.red() = r2, c2.green() = g2, c2.blue() = b2;
+                replace(c1,c2);
                 continue;
-            } 
+            }
+            if (command == "invert") {
+                invert();
+                continue;
+            }
+            if (command == "to_gray_scale") {
+                to_gray_scale();
+                continue;
+            }
+            if (command == "fill") {
+                int x,y,w,h,r, g, b;
+                input >> x >> y >> w >> h >> r >> g >> b;
+                Color c;
+                c.red() = r, c.green() = g, c.blue() = b;
+                fill(x,y,w,h,c);
+                continue;
+            }
             // TODO ...
 
         }
@@ -83,14 +100,52 @@ namespace prog {
         saveToPNG(filename, image);
     }
     void Script::replace(Color c1, Color c2){
-        for (int i = 0; i < image->width; i++)
+        for (int i = 0; i < image->width(); i++)
         {
-            for (int j = 0; j < image->height; j++)
+            for (int j = 0; j < image->height(); j++)
             {
-                if(image->at(i,j) == c1){
+                if(Color::compare_colors(image->at(i,j), c1)){
                     image->at(i,j) = c2;
                 }
             }
         }
+    }
+    void Script::invert(){
+        for (int i = 0; i < image->width(); i++)
+        {
+            for (int j = 0; j < image->height(); j++)
+            {
+                image->at(i,j).red() = 255 - image->at(i,j).red();
+                image->at(i,j).green() = 255 - image->at(i,j).green();
+                image->at(i,j).blue() = 255 - image->at(i,j).blue();
+            }
+        }
+    }
+    void Script::to_gray_scale(){
+        for (int i = 0; i < image->width(); i++)
+        {
+            for (int j = 0; j < image->height(); j++)
+            {
+                int aux;
+                aux = image->at(i,j).red() + image->at(i,j).green() + image->at(i,j).blue();
+                image->at(i,j).red() = aux / 3;
+                image->at(i,j).green() = aux / 3;
+                image->at(i,j).blue() = aux / 3;
+            }
+        }
+    }
+    void Script::fill(int x, int y, int w, int h, Color c){
+        for (int i = x; i < x + w; i++)
+        {
+            for (int j = y; j < y + h; j++)
+            {
+                image->at(i,j).red() = c.red();
+                image->at(i,j).green() = c.green();
+                image->at(i,j).blue() = c.blue();
+            }
+        }
+    }
+    void add(const std::string &filename, Color c, int x, int y){
+        
     }
 }
