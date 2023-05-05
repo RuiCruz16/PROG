@@ -74,6 +74,16 @@ namespace prog {
                 fill(x,y,w,h,c);
                 continue;
             }
+            if (command == "add") {
+                string filename;
+                int r, g, b, x, y;
+                input >> filename;
+                input >> r >> g >> b >> x >> y;
+                Color c;
+                c.red() = r, c.green() = g, c.blue() = b; 
+                add(filename,c,x,y);
+                continue;
+            }
             // TODO ...
 
         }
