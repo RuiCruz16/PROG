@@ -198,13 +198,24 @@ namespace prog {
     //void Script::crop(int x, int y, int w, int h)
 
     void Script::rotate_left(){
-        Image aux = image; // Tentar replicar a imagem (deu erro desta forma!)
+        Image* aux;
         for (int i = 0; i < image->width(); i++)
         {
             for (int j = 0; j < image->height(); j++)
             {
-                image->at(image->width() - i,image->height() - i) = aux->at(i,j); // A ideia é esta de igualar o pixel que vamos rodar pelo original!
-                // Podemos imaginar uma imagem cortada em 4 quadrantes iguais e que para situacao fazemos um if diferente por exemplo, o 1 quadrante estaria entre mais da metade do comprimento e menos da metade da altura!
+                aux->at(i,j) = image->at(i,j);
+            }
+        }
+
+        for (int x = 0; x < image->width(); x++)
+        {
+            for (int y = 0; y < image->height(); y++)
+            {
+                if((x > image->width()/2 and y <= image->height()/2) or (x <= image->width()/2 and y > image->height()/2))
+                    image->at(y,image->width() - x + 1);
+
+                if((x <= image->width()/2 and y <= image->height()/2) or (x > image->width()/2 and y > image->height()/2))
+                    image->at(y,image->height() - x + 1);
             }
         }
     }
