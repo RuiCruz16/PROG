@@ -1,17 +1,368 @@
->>>> [1] v_mirror1 <<<<
+>>>> [1] rotate_left1 <<<<
 Executing command 'open' ...
-Executing command 'v_mirror' ...
-Executing command 'save' ...
->>>> [2] v_mirror2 <<<<
+Executing command 'rotate_left' ...
+=================================================================
+==379==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x61a000000b33 at pc 0x55d88846ef5c bp 0x7fffa3f7c0b0 sp 0x7fffa3f7c0a0
+WRITE of size 3 at 0x61a000000b33 thread T0
+    #0 0x55d88846ef5b in prog::Script::rotate_left() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:218
+    #1 0x55d88846a8ee in prog::Script::run() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:102
+    #2 0x55d88845427b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8627b)
+    #3 0x55d88845507d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8707d)
+    #4 0x55d888456ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x88ef3)
+    #5 0x55d888453340 in main /mnt/c/Users/rpsc1/Desktop/project/test.cpp:186
+    #6 0x7f43089b4d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #7 0x7f43089b4e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #8 0x55d888452ed4 in _start (/mnt/c/Users/rpsc1/Desktop/project/test+0x84ed4)
+
+0x61a000000b33 is located 3 bytes to the right of 1200-byte region [0x61a000000680,0x61a000000b30)
+allocated by thread T0 here:
+    #0 0x7f43095d11c7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x55d888466969 in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/11/ext/new_allocator.h:127
+    #2 0x55d888466623 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/11/bits/alloc_traits.h:464
+    #3 0x55d888465fad in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/11/bits/stl_vector.h:346
+    #4 0x55d88846510d in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/11/bits/stl_vector.h:361
+    #5 0x55d888464010 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/11/bits/stl_vector.h:305
+    #6 0x55d888466e42 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_vector.h:555
+    #7 0x55d888466b65 in void std::_Construct<std::vector<prog::Color, std::allocator<prog::Color> >, std::vector<prog::Color, std::allocator<prog::Color> > const&>(std::vector<prog::Color, std::allocator<prog::Color> >*, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_construct.h:119
+    #8 0x55d888466811 in std::vector<prog::Color, std::allocator<prog::Color> >* std::__uninitialized_fill_n<false>::__uninit_fill_n<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_uninitialized.h:237
+    #9 0x55d88846614d in std::vector<prog::Color, std::allocator<prog::Color> >* std::uninitialized_fill_n<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_uninitialized.h:297
+    #10 0x55d888465974 in std::vector<prog::Color, std::allocator<prog::Color> >* std::__uninitialized_fill_n_a<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> >, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > >&) /usr/include/c++/11/bits/stl_uninitialized.h:410
+    #11 0x55d888464856 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_fill_initialize(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_vector.h:1596
+    #12 0x55d8884635c1 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::vector(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:525
+    #13 0x55d88846240a in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/rpsc1/Desktop/project/Image.cpp:10
+    #14 0x55d8884b220c in prog::loadFromPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) /mnt/c/Users/rpsc1/Desktop/project/PNG.cpp:20
+    #15 0x55d88846b566 in prog::Script::open() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:116
+    #16 0x55d888468da0 in prog::Script::run() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:40
+    #17 0x55d88845427b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8627b)
+    #18 0x55d88845507d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8707d)
+    #19 0x55d888456ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x88ef3)
+    #20 0x55d888453340 in main /mnt/c/Users/rpsc1/Desktop/project/test.cpp:186
+    #21 0x7f43089b4d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:218 in prog::Script::rotate_left()
+Shadow bytes around the buggy address:
+  0x0c347fff8110: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c347fff8120: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c347fff8130: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c347fff8140: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c347fff8150: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c347fff8160: 00 00 00 00 00 00[fa]fa fa fa fa fa fa fa fa fa
+  0x0c347fff8170: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c347fff8180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c347fff8190: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c347fff81a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c347fff81b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==379==ABORTING
+>>>> [2] rotate_left2 <<<<
 Executing command 'open' ...
-Executing command 'v_mirror' ...
-Executing command 'v_mirror' ...
-Executing command 'save' ...
->>>> [3] v_mirror3 <<<<
+Executing command 'rotate_left' ...
+=================================================================
+==380==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6170000006ee at pc 0x55d88846e30e bp 0x7fffa3f7c0b0 sp 0x7fffa3f7c0a0
+WRITE of size 3 at 0x6170000006ee thread T0
+    #0 0x55d88846e30d in prog::Script::rotate_left() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:206
+    #1 0x55d88846a8ee in prog::Script::run() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:102
+    #2 0x55d88845427b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8627b)
+    #3 0x55d88845507d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8707d)
+    #4 0x55d888456ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x88ef3)
+    #5 0x55d888453340 in main /mnt/c/Users/rpsc1/Desktop/project/test.cpp:186
+    #6 0x7f43089b4d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #7 0x7f43089b4e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #8 0x55d888452ed4 in _start (/mnt/c/Users/rpsc1/Desktop/project/test+0x84ed4)
+
+0x6170000006ee is located 0 bytes to the right of 750-byte region [0x617000000400,0x6170000006ee)
+allocated by thread T0 here:
+    #0 0x7f43095d11c7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x55d888466969 in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/11/ext/new_allocator.h:127
+    #2 0x55d888466623 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/11/bits/alloc_traits.h:464
+    #3 0x55d888465fad in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/11/bits/stl_vector.h:346
+    #4 0x55d88846510d in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/11/bits/stl_vector.h:361
+    #5 0x55d888464010 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/11/bits/stl_vector.h:305
+    #6 0x55d888466e42 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_vector.h:555
+    #7 0x55d888466b65 in void std::_Construct<std::vector<prog::Color, std::allocator<prog::Color> >, std::vector<prog::Color, std::allocator<prog::Color> > const&>(std::vector<prog::Color, std::allocator<prog::Color> >*, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_construct.h:119
+    #8 0x55d888466811 in std::vector<prog::Color, std::allocator<prog::Color> >* std::__uninitialized_fill_n<false>::__uninit_fill_n<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_uninitialized.h:237
+    #9 0x55d88846614d in std::vector<prog::Color, std::allocator<prog::Color> >* std::uninitialized_fill_n<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_uninitialized.h:297
+    #10 0x55d888465974 in std::vector<prog::Color, std::allocator<prog::Color> >* std::__uninitialized_fill_n_a<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> >, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > >&) /usr/include/c++/11/bits/stl_uninitialized.h:410
+    #11 0x55d888464856 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_fill_initialize(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_vector.h:1596
+    #12 0x55d8884635c1 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::vector(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:525
+    #13 0x55d88846240a in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/rpsc1/Desktop/project/Image.cpp:10
+    #14 0x55d88846e143 in prog::Script::rotate_left() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:201
+    #15 0x55d88846a8ee in prog::Script::run() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:102
+    #16 0x55d88845427b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8627b)
+    #17 0x55d88845507d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8707d)
+    #18 0x55d888456ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x88ef3)
+    #19 0x55d888453340 in main /mnt/c/Users/rpsc1/Desktop/project/test.cpp:186
+    #20 0x7f43089b4d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:206 in prog::Script::rotate_left()
+Shadow bytes around the buggy address:
+  0x0c2e7fff8080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff8090: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff80a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff80b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff80c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c2e7fff80d0: 00 00 00 00 00 00 00 00 00 00 00 00 00[06]fa fa
+  0x0c2e7fff80e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c2e7fff80f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff8100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff8110: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff8120: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==380==ABORTING
+>>>> [3] rotate_left3 <<<<
 Executing command 'open' ...
-Executing command 'v_mirror' ...
-Executing command 'save' ...
->>>> [4] v_mirror4 <<<<
+Executing command 'rotate_left' ...
+=================================================================
+==381==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x61c000000f8b at pc 0x55d88846ef5c bp 0x7fffa3f7c0b0 sp 0x7fffa3f7c0a0
+WRITE of size 3 at 0x61c000000f8b thread T0
+    #0 0x55d88846ef5b in prog::Script::rotate_left() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:218
+    #1 0x55d88846a8ee in prog::Script::run() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:102
+    #2 0x55d88845427b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8627b)
+    #3 0x55d88845507d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8707d)
+    #4 0x55d888456ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x88ef3)
+    #5 0x55d888453340 in main /mnt/c/Users/rpsc1/Desktop/project/test.cpp:186
+    #6 0x7f43089b4d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #7 0x7f43089b4e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #8 0x55d888452ed4 in _start (/mnt/c/Users/rpsc1/Desktop/project/test+0x84ed4)
+
+0x61c000000f8b is located 3 bytes to the right of 1800-byte region [0x61c000000880,0x61c000000f88)
+allocated by thread T0 here:
+    #0 0x7f43095d11c7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x55d888466969 in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/11/ext/new_allocator.h:127
+    #2 0x55d888466623 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/11/bits/alloc_traits.h:464
+    #3 0x55d888465fad in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/11/bits/stl_vector.h:346
+    #4 0x55d88846510d in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/11/bits/stl_vector.h:361
+    #5 0x55d888464010 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/11/bits/stl_vector.h:305
+    #6 0x55d888466e42 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_vector.h:555
+    #7 0x55d888466b65 in void std::_Construct<std::vector<prog::Color, std::allocator<prog::Color> >, std::vector<prog::Color, std::allocator<prog::Color> > const&>(std::vector<prog::Color, std::allocator<prog::Color> >*, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_construct.h:119
+    #8 0x55d888466811 in std::vector<prog::Color, std::allocator<prog::Color> >* std::__uninitialized_fill_n<false>::__uninit_fill_n<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_uninitialized.h:237
+    #9 0x55d88846614d in std::vector<prog::Color, std::allocator<prog::Color> >* std::uninitialized_fill_n<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_uninitialized.h:297
+    #10 0x55d888465974 in std::vector<prog::Color, std::allocator<prog::Color> >* std::__uninitialized_fill_n_a<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> >, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > >&) /usr/include/c++/11/bits/stl_uninitialized.h:410
+    #11 0x55d888464856 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_fill_initialize(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_vector.h:1596
+    #12 0x55d8884635c1 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::vector(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:525
+    #13 0x55d88846240a in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/rpsc1/Desktop/project/Image.cpp:10
+    #14 0x55d8884b220c in prog::loadFromPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) /mnt/c/Users/rpsc1/Desktop/project/PNG.cpp:20
+    #15 0x55d88846b566 in prog::Script::open() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:116
+    #16 0x55d888468da0 in prog::Script::run() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:40
+    #17 0x55d88845427b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8627b)
+    #18 0x55d88845507d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8707d)
+    #19 0x55d888456ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x88ef3)
+    #20 0x55d888453340 in main /mnt/c/Users/rpsc1/Desktop/project/test.cpp:186
+    #21 0x7f43089b4d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:218 in prog::Script::rotate_left()
+Shadow bytes around the buggy address:
+  0x0c387fff81a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c387fff81b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c387fff81c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c387fff81d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c387fff81e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c387fff81f0: 00[fa]fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c387fff8200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c387fff8210: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c387fff8220: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c387fff8230: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c387fff8240: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==381==ABORTING
+>>>> [4] rotate_left_rotate_right1 <<<<
 Executing command 'open' ...
-Executing command 'v_mirror' ...
-Executing command 'save' ...
+Executing command 'rotate_left' ...
+=================================================================
+==382==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6170000006ee at pc 0x55d88846e30e bp 0x7fffa3f7c0b0 sp 0x7fffa3f7c0a0
+WRITE of size 3 at 0x6170000006ee thread T0
+    #0 0x55d88846e30d in prog::Script::rotate_left() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:206
+    #1 0x55d88846a8ee in prog::Script::run() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:102
+    #2 0x55d88845427b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8627b)
+    #3 0x55d88845507d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8707d)
+    #4 0x55d888456ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x88ef3)
+    #5 0x55d888453340 in main /mnt/c/Users/rpsc1/Desktop/project/test.cpp:186
+    #6 0x7f43089b4d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #7 0x7f43089b4e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #8 0x55d888452ed4 in _start (/mnt/c/Users/rpsc1/Desktop/project/test+0x84ed4)
+
+0x6170000006ee is located 0 bytes to the right of 750-byte region [0x617000000400,0x6170000006ee)
+allocated by thread T0 here:
+    #0 0x7f43095d11c7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x55d888466969 in __gnu_cxx::new_allocator<prog::Color>::allocate(unsigned long, void const*) /usr/include/c++/11/ext/new_allocator.h:127
+    #2 0x55d888466623 in std::allocator_traits<std::allocator<prog::Color> >::allocate(std::allocator<prog::Color>&, unsigned long) /usr/include/c++/11/bits/alloc_traits.h:464
+    #3 0x55d888465fad in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_allocate(unsigned long) /usr/include/c++/11/bits/stl_vector.h:346
+    #4 0x55d88846510d in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_M_create_storage(unsigned long) /usr/include/c++/11/bits/stl_vector.h:361
+    #5 0x55d888464010 in std::_Vector_base<prog::Color, std::allocator<prog::Color> >::_Vector_base(unsigned long, std::allocator<prog::Color> const&) /usr/include/c++/11/bits/stl_vector.h:305
+    #6 0x55d888466e42 in std::vector<prog::Color, std::allocator<prog::Color> >::vector(std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_vector.h:555
+    #7 0x55d888466b65 in void std::_Construct<std::vector<prog::Color, std::allocator<prog::Color> >, std::vector<prog::Color, std::allocator<prog::Color> > const&>(std::vector<prog::Color, std::allocator<prog::Color> >*, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_construct.h:119
+    #8 0x55d888466811 in std::vector<prog::Color, std::allocator<prog::Color> >* std::__uninitialized_fill_n<false>::__uninit_fill_n<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_uninitialized.h:237
+    #9 0x55d88846614d in std::vector<prog::Color, std::allocator<prog::Color> >* std::uninitialized_fill_n<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_uninitialized.h:297
+    #10 0x55d888465974 in std::vector<prog::Color, std::allocator<prog::Color> >* std::__uninitialized_fill_n_a<std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> >, std::vector<prog::Color, std::allocator<prog::Color> > >(std::vector<prog::Color, std::allocator<prog::Color> >*, unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > >&) /usr/include/c++/11/bits/stl_uninitialized.h:410
+    #11 0x55d888464856 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_fill_initialize(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&) /usr/include/c++/11/bits/stl_vector.h:1596
+    #12 0x55d8884635c1 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::vector(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:525
+    #13 0x55d88846240a in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/rpsc1/Desktop/project/Image.cpp:10
+    #14 0x55d88846e143 in prog::Script::rotate_left() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:201
+    #15 0x55d88846a8ee in prog::Script::run() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:102
+    #16 0x55d88845427b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8627b)
+    #17 0x55d88845507d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8707d)
+    #18 0x55d888456ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x88ef3)
+    #19 0x55d888453340 in main /mnt/c/Users/rpsc1/Desktop/project/test.cpp:186
+    #20 0x7f43089b4d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:206 in prog::Script::rotate_left()
+Shadow bytes around the buggy address:
+  0x0c2e7fff8080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff8090: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff80a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff80b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff80c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c2e7fff80d0: 00 00 00 00 00 00 00 00 00 00 00 00 00[06]fa fa
+  0x0c2e7fff80e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c2e7fff80f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff8100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff8110: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c2e7fff8120: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==382==ABORTING
+>>>> [5] rotate_left_rotate_right2 <<<<
+Executing command 'open' ...
+Executing command 'rotate_left' ...
+=================================================================
+==383==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x62900000e2b0 at pc 0x55d888463862 bp 0x7fffa3f7c040 sp 0x7fffa3f7c030
+READ of size 8 at 0x62900000e2b0 thread T0
+    #0 0x55d888463861 in std::vector<prog::Color, std::allocator<prog::Color> >::operator[](unsigned long) /usr/include/c++/11/bits/stl_vector.h:1046
+    #1 0x55d8884629a1 in prog::Image::at(int, int) /mnt/c/Users/rpsc1/Desktop/project/Image.cpp:26
+    #2 0x55d88846e26e in prog::Script::rotate_left() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:206
+    #3 0x55d88846a8ee in prog::Script::run() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:102
+    #4 0x55d88845427b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8627b)
+    #5 0x55d88845507d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8707d)
+    #6 0x55d888456ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x88ef3)
+    #7 0x55d888453340 in main /mnt/c/Users/rpsc1/Desktop/project/test.cpp:186
+    #8 0x7f43089b4d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #9 0x7f43089b4e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #10 0x55d888452ed4 in _start (/mnt/c/Users/rpsc1/Desktop/project/test+0x84ed4)
+
+0x62900000e2b0 is located 0 bytes to the right of 16560-byte region [0x62900000a200,0x62900000e2b0)
+allocated by thread T0 here:
+    #0 0x7f43095d11c7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x55d888466acf in __gnu_cxx::new_allocator<std::vector<prog::Color, std::allocator<prog::Color> > >::allocate(unsigned long, void const*) /usr/include/c++/11/ext/new_allocator.h:127
+    #2 0x55d8884667a9 in std::allocator_traits<std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::allocate(std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > >&, unsigned long) /usr/include/c++/11/bits/alloc_traits.h:464
+    #3 0x55d88846610d in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_allocate(unsigned long) /usr/include/c++/11/bits/stl_vector.h:346
+    #4 0x55d888465747 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_create_storage(unsigned long) /usr/include/c++/11/bits/stl_vector.h:361
+    #5 0x55d8884646c2 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_Vector_base(unsigned long, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:305
+    #6 0x55d888463582 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::vector(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:524
+    #7 0x55d88846240a in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/rpsc1/Desktop/project/Image.cpp:10
+    #8 0x55d88846e143 in prog::Script::rotate_left() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:201
+    #9 0x55d88846a8ee in prog::Script::run() /mnt/c/Users/rpsc1/Desktop/project/Script.cpp:102
+    #10 0x55d88845427b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8627b)
+    #11 0x55d88845507d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x8707d)
+    #12 0x55d888456ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/rpsc1/Desktop/project/test+0x88ef3)
+    #13 0x55d888453340 in main /mnt/c/Users/rpsc1/Desktop/project/test.cpp:186
+    #14 0x7f43089b4d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /usr/include/c++/11/bits/stl_vector.h:1046 in std::vector<prog::Color, std::allocator<prog::Color> >::operator[](unsigned long)
+Shadow bytes around the buggy address:
+  0x0c527fff9c00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c527fff9c10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c527fff9c20: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c527fff9c30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c527fff9c40: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c527fff9c50: 00 00 00 00 00 00[fa]fa fa fa fa fa fa fa fa fa
+  0x0c527fff9c60: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c527fff9c70: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c527fff9c80: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c527fff9c90: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c527fff9ca0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==383==ABORTING
