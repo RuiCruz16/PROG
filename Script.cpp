@@ -103,7 +103,7 @@ namespace prog {
                 continue;
             }
             if (command == "rotate_right") {
-                rotate_left();
+                rotate_right();
                 continue;
             }
         }
@@ -193,34 +193,68 @@ namespace prog {
             } 
         }
     }
+    
     //void Script::add(const std::string &filename, Color c, int x, int y)
 
     //void Script::crop(int x, int y, int w, int h)
 
-    void Script::rotate_left(){
-        Image* aux = new Image(image->height(), image->width());
-        for (int i = 0; i < image->width(); i++)
-        {
-            for (int j = 0; j < image->height(); j++)
-            {
-                aux->at(i,j) = image->at(i,j);
+    void Script::rotate_left(){ // 2 testes passam!
+        if (image->width() == image->height()) {
+            Image* aux = new Image(image->width(), image->height()); // mesmas dimensões da original
+            for (int i = 0; i < image->width(); i++) {
+                for (int j = 0; j < image->height(); j++) {
+                    aux->at(i,j) = image->at(i,j);
+                }
             }
-        }   
-
-        for (int x = 0; x < image->width(); x++)
-        {
-            for (int y = 0; y < image->height(); y++)
-            {
-                if((x > image->width()/2 and y <= image->height()/2) or (x <= image->width()/2 and y > image->height()/2))
-                    image->at(y,image->width() - x + 1) = aux->at(x,y);
-
-                if((x <= image->width()/2 and y <= image->height()/2) or (x > image->width()/2 and y > image->height()/2))
-                    image->at(y,image->height() - x + 1) = aux->at(x,y);
+            for (int x = 0; x < image->width(); x++) {
+                for (int y = 0; y < image->height(); y++) {
+                    if((x > image->width()/2 and y <= image->height()/2) or (x <= image->width()/2 and y > image->height()/2))
+                        image->at(y,image->width() - x -1) = aux->at(x,y);
+                    if((x <= image->width()/2 and y <= image->height()/2) or (x > image->width()/2 and y > image->height()/2))
+                        image->at(y,image->height() - x - 1) = aux->at(x,y);
+                }
             }
+            delete aux;
         }
-        delete aux;
+        else {
+            Image* aux = new Image(image->height(), image->width());
+            for (int i = 0; i < image->width(); i++) {
+                for (int j = 0; j < image->height(); j++) {
+                    aux->at(image->width() -1 - j,i) = image->at(i,j);
+                }
+            }
+            delete image;
+            image = aux;
+        }
     }
-    void Script::rotate_right(){
-        // Mesma ideia do rotate left só que para a direita!
+
+    void Script::rotate_right(){ // 2 testes passam!
+        if (image->width() == image->height()) {
+            Image* aux = new Image(image->width(), image->height()); // mesmas dimensões da original
+            for (int i = 0; i < image->width(); i++) {
+                for (int j = 0; j < image->height(); j++) {
+                    aux->at(i,j) = image->at(i,j);
+                }
+            }
+            for (int x = 0; x < image->width(); x++) {
+                for (int y = 0; y < image->height(); y++) {
+                    if((x > image->width()/2 and y <= image->height()/2) or (x <= image->width()/2 and y > image->height()/2))
+                        image->at(image->height() - y - 1, x) = aux->at(x,y);
+                    if((x <= image->width()/2 and y <= image->height()/2) or (x > image->width()/2 and y > image->height()/2))
+                        image->at(image->width() - y - 1, image->height() - x - 1) = aux->at(x,y);
+                }
+            }
+            delete aux;
+        }
+        else {
+            Image* aux = new Image(image->height(), image->width());
+            for (int i = 0; i < image->width(); i++) {
+                for (int j = 0; j < image->height(); j++) {
+                    aux->at(image->height() - j - 1,i) = image->at(i,j);
+                }
+            }
+            delete image;
+            image = aux;
+        }
     }
 }
