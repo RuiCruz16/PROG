@@ -1,38 +1,42 @@
->>>> [1] rotate_left_rotate_right1 <<<<
+>>>> [1] rotate_left1 <<<<
+Executing command 'open' ...
+Executing command 'rotate_left' ...
+Executing command 'save' ...
+>>>> [2] rotate_left2 <<<<
 Executing command 'open' ...
 Executing command 'rotate_left' ...
 =================================================================
-==1748==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x623000002488 at pc 0x5637c06a8862 bp 0x7fffb39a59e0 sp 0x7fffb39a59d0
+==56==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x623000002488 at pc 0x55cdb50a5862 bp 0x7ffeb852f040 sp 0x7ffeb852f030
 READ of size 8 at 0x623000002488 thread T0
-    #0 0x5637c06a8861 in std::vector<prog::Color, std::allocator<prog::Color> >::operator[](unsigned long) /usr/include/c++/11/bits/stl_vector.h:1046
-    #1 0x5637c06a79a1 in prog::Image::at(int, int) /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:26
-    #2 0x5637c06b4674 in prog::Script::rotate_left() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:222
-    #3 0x5637c06af8ee in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:102
-    #4 0x5637c069927b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8927b)
-    #5 0x5637c069a07d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8a07d)
-    #6 0x5637c069bef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8bef3)
-    #7 0x5637c0698340 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
-    #8 0x7f913049fd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
-    #9 0x7f913049fe3f in __libc_start_main_impl ../csu/libc-start.c:392
-    #10 0x5637c0697ed4 in _start (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x87ed4)
+    #0 0x55cdb50a5861 in std::vector<prog::Color, std::allocator<prog::Color> >::operator[](unsigned long) /usr/include/c++/11/bits/stl_vector.h:1046
+    #1 0x55cdb50a49a1 in prog::Image::at(int, int) /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:26
+    #2 0x55cdb50b1674 in prog::Script::rotate_left() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:222
+    #3 0x55cdb50ac8ee in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:102
+    #4 0x55cdb509627b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8927b)
+    #5 0x55cdb509707d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8a07d)
+    #6 0x55cdb5098ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8bef3)
+    #7 0x55cdb5095340 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
+    #8 0x7fe0559cdd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #9 0x7fe0559cde3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #10 0x55cdb5094ed4 in _start (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x87ed4)
 
 0x623000002488 is located 3096 bytes to the right of 6000-byte region [0x623000000100,0x623000001870)
 allocated by thread T0 here:
-    #0 0x7f91310ba1c7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
-    #1 0x5637c06abacf in __gnu_cxx::new_allocator<std::vector<prog::Color, std::allocator<prog::Color> > >::allocate(unsigned long, void const*) /usr/include/c++/11/ext/new_allocator.h:127
-    #2 0x5637c06ab7a9 in std::allocator_traits<std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::allocate(std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > >&, unsigned long) /usr/include/c++/11/bits/alloc_traits.h:464
-    #3 0x5637c06ab10d in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_allocate(unsigned long) /usr/include/c++/11/bits/stl_vector.h:346
-    #4 0x5637c06aa747 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_create_storage(unsigned long) /usr/include/c++/11/bits/stl_vector.h:361
-    #5 0x5637c06a96c2 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_Vector_base(unsigned long, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:305
-    #6 0x5637c06a8582 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::vector(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:524
-    #7 0x5637c06a740a in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:10
-    #8 0x5637c06b4473 in prog::Script::rotate_left() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:219
-    #9 0x5637c06af8ee in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:102
-    #10 0x5637c069927b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8927b)
-    #11 0x5637c069a07d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8a07d)
-    #12 0x5637c069bef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8bef3)
-    #13 0x5637c0698340 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
-    #14 0x7f913049fd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #0 0x7fe0565e81c7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x55cdb50a8acf in __gnu_cxx::new_allocator<std::vector<prog::Color, std::allocator<prog::Color> > >::allocate(unsigned long, void const*) /usr/include/c++/11/ext/new_allocator.h:127
+    #2 0x55cdb50a87a9 in std::allocator_traits<std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::allocate(std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > >&, unsigned long) /usr/include/c++/11/bits/alloc_traits.h:464
+    #3 0x55cdb50a810d in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_allocate(unsigned long) /usr/include/c++/11/bits/stl_vector.h:346
+    #4 0x55cdb50a7747 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_create_storage(unsigned long) /usr/include/c++/11/bits/stl_vector.h:361
+    #5 0x55cdb50a66c2 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_Vector_base(unsigned long, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:305
+    #6 0x55cdb50a5582 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::vector(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:524
+    #7 0x55cdb50a440a in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:10
+    #8 0x55cdb50b1473 in prog::Script::rotate_left() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:219
+    #9 0x55cdb50ac8ee in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:102
+    #10 0x55cdb509627b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8927b)
+    #11 0x55cdb509707d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8a07d)
+    #12 0x55cdb5098ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8bef3)
+    #13 0x55cdb5095340 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
+    #14 0x7fe0559cdd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
 
 SUMMARY: AddressSanitizer: heap-buffer-overflow /usr/include/c++/11/bits/stl_vector.h:1046 in std::vector<prog::Color, std::allocator<prog::Color> >::operator[](unsigned long)
 Shadow bytes around the buggy address:
@@ -67,42 +71,118 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   Left alloca redzone:     ca
   Right alloca redzone:    cb
   Shadow gap:              cc
-==1748==ABORTING
->>>> [2] rotate_left_rotate_right2 <<<<
+==56==ABORTING
+>>>> [3] rotate_left3 <<<<
+Executing command 'open' ...
+Executing command 'rotate_left' ...
+Executing command 'rotate_left' ...
+Executing command 'rotate_left' ...
+Executing command 'save' ...
+>>>> [4] rotate_left_rotate_right1 <<<<
 Executing command 'open' ...
 Executing command 'rotate_left' ...
 =================================================================
-==1749==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x62900000ece8 at pc 0x5637c06a8862 bp 0x7fffb39a59e0 sp 0x7fffb39a59d0
+==59==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x623000002488 at pc 0x55cdb50a5862 bp 0x7ffeb852f040 sp 0x7ffeb852f030
+READ of size 8 at 0x623000002488 thread T0
+    #0 0x55cdb50a5861 in std::vector<prog::Color, std::allocator<prog::Color> >::operator[](unsigned long) /usr/include/c++/11/bits/stl_vector.h:1046
+    #1 0x55cdb50a49a1 in prog::Image::at(int, int) /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:26
+    #2 0x55cdb50b1674 in prog::Script::rotate_left() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:222
+    #3 0x55cdb50ac8ee in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:102
+    #4 0x55cdb509627b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8927b)
+    #5 0x55cdb509707d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8a07d)
+    #6 0x55cdb5098ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8bef3)
+    #7 0x55cdb5095340 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
+    #8 0x7fe0559cdd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #9 0x7fe0559cde3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #10 0x55cdb5094ed4 in _start (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x87ed4)
+
+0x623000002488 is located 3096 bytes to the right of 6000-byte region [0x623000000100,0x623000001870)
+allocated by thread T0 here:
+    #0 0x7fe0565e81c7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x55cdb50a8acf in __gnu_cxx::new_allocator<std::vector<prog::Color, std::allocator<prog::Color> > >::allocate(unsigned long, void const*) /usr/include/c++/11/ext/new_allocator.h:127
+    #2 0x55cdb50a87a9 in std::allocator_traits<std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::allocate(std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > >&, unsigned long) /usr/include/c++/11/bits/alloc_traits.h:464
+    #3 0x55cdb50a810d in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_allocate(unsigned long) /usr/include/c++/11/bits/stl_vector.h:346
+    #4 0x55cdb50a7747 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_create_storage(unsigned long) /usr/include/c++/11/bits/stl_vector.h:361
+    #5 0x55cdb50a66c2 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_Vector_base(unsigned long, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:305
+    #6 0x55cdb50a5582 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::vector(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:524
+    #7 0x55cdb50a440a in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:10
+    #8 0x55cdb50b1473 in prog::Script::rotate_left() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:219
+    #9 0x55cdb50ac8ee in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:102
+    #10 0x55cdb509627b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8927b)
+    #11 0x55cdb509707d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8a07d)
+    #12 0x55cdb5098ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8bef3)
+    #13 0x55cdb5095340 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
+    #14 0x7fe0559cdd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /usr/include/c++/11/bits/stl_vector.h:1046 in std::vector<prog::Color, std::allocator<prog::Color> >::operator[](unsigned long)
+Shadow bytes around the buggy address:
+  0x0c467fff8440: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c467fff8450: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c467fff8460: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c467fff8470: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c467fff8480: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x0c467fff8490: fa[fa]fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c467fff84a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c467fff84b0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c467fff84c0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c467fff84d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c467fff84e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==59==ABORTING
+>>>> [5] rotate_left_rotate_right2 <<<<
+Executing command 'open' ...
+Executing command 'rotate_left' ...
+=================================================================
+==60==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x62900000ece8 at pc 0x55cdb50a5862 bp 0x7ffeb852f040 sp 0x7ffeb852f030
 READ of size 8 at 0x62900000ece8 thread T0
-    #0 0x5637c06a8861 in std::vector<prog::Color, std::allocator<prog::Color> >::operator[](unsigned long) /usr/include/c++/11/bits/stl_vector.h:1046
-    #1 0x5637c06a79a1 in prog::Image::at(int, int) /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:26
-    #2 0x5637c06b4674 in prog::Script::rotate_left() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:222
-    #3 0x5637c06af8ee in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:102
-    #4 0x5637c069927b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8927b)
-    #5 0x5637c069a07d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8a07d)
-    #6 0x5637c069bef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8bef3)
-    #7 0x5637c0698340 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
-    #8 0x7f913049fd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
-    #9 0x7f913049fe3f in __libc_start_main_impl ../csu/libc-start.c:392
-    #10 0x5637c0697ed4 in _start (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x87ed4)
+    #0 0x55cdb50a5861 in std::vector<prog::Color, std::allocator<prog::Color> >::operator[](unsigned long) /usr/include/c++/11/bits/stl_vector.h:1046
+    #1 0x55cdb50a49a1 in prog::Image::at(int, int) /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:26
+    #2 0x55cdb50b1674 in prog::Script::rotate_left() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:222
+    #3 0x55cdb50ac8ee in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:102
+    #4 0x55cdb509627b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8927b)
+    #5 0x55cdb509707d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8a07d)
+    #6 0x55cdb5098ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8bef3)
+    #7 0x55cdb5095340 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
+    #8 0x7fe0559cdd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #9 0x7fe0559cde3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #10 0x55cdb5094ed4 in _start (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x87ed4)
 
 0x62900000ece8 is located 2616 bytes to the right of 16560-byte region [0x62900000a200,0x62900000e2b0)
 allocated by thread T0 here:
-    #0 0x7f91310ba1c7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
-    #1 0x5637c06abacf in __gnu_cxx::new_allocator<std::vector<prog::Color, std::allocator<prog::Color> > >::allocate(unsigned long, void const*) /usr/include/c++/11/ext/new_allocator.h:127
-    #2 0x5637c06ab7a9 in std::allocator_traits<std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::allocate(std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > >&, unsigned long) /usr/include/c++/11/bits/alloc_traits.h:464
-    #3 0x5637c06ab10d in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_allocate(unsigned long) /usr/include/c++/11/bits/stl_vector.h:346
-    #4 0x5637c06aa747 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_create_storage(unsigned long) /usr/include/c++/11/bits/stl_vector.h:361
-    #5 0x5637c06a96c2 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_Vector_base(unsigned long, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:305
-    #6 0x5637c06a8582 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::vector(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:524
-    #7 0x5637c06a740a in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:10
-    #8 0x5637c06b4473 in prog::Script::rotate_left() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:219
-    #9 0x5637c06af8ee in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:102
-    #10 0x5637c069927b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8927b)
-    #11 0x5637c069a07d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8a07d)
-    #12 0x5637c069bef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8bef3)
-    #13 0x5637c0698340 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
-    #14 0x7f913049fd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #0 0x7fe0565e81c7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x55cdb50a8acf in __gnu_cxx::new_allocator<std::vector<prog::Color, std::allocator<prog::Color> > >::allocate(unsigned long, void const*) /usr/include/c++/11/ext/new_allocator.h:127
+    #2 0x55cdb50a87a9 in std::allocator_traits<std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::allocate(std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > >&, unsigned long) /usr/include/c++/11/bits/alloc_traits.h:464
+    #3 0x55cdb50a810d in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_allocate(unsigned long) /usr/include/c++/11/bits/stl_vector.h:346
+    #4 0x55cdb50a7747 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_M_create_storage(unsigned long) /usr/include/c++/11/bits/stl_vector.h:361
+    #5 0x55cdb50a66c2 in std::_Vector_base<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::_Vector_base(unsigned long, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:305
+    #6 0x55cdb50a5582 in std::vector<std::vector<prog::Color, std::allocator<prog::Color> >, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > >::vector(unsigned long, std::vector<prog::Color, std::allocator<prog::Color> > const&, std::allocator<std::vector<prog::Color, std::allocator<prog::Color> > > const&) /usr/include/c++/11/bits/stl_vector.h:524
+    #7 0x55cdb50a440a in prog::Image::Image(int, int, prog::Color const&) /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:10
+    #8 0x55cdb50b1473 in prog::Script::rotate_left() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:219
+    #9 0x55cdb50ac8ee in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:102
+    #10 0x55cdb509627b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8927b)
+    #11 0x55cdb509707d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8a07d)
+    #12 0x55cdb5098ef3 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x8bef3)
+    #13 0x55cdb5095340 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
+    #14 0x7fe0559cdd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
 
 SUMMARY: AddressSanitizer: heap-buffer-overflow /usr/include/c++/11/bits/stl_vector.h:1046 in std::vector<prog::Color, std::allocator<prog::Color> >::operator[](unsigned long)
 Shadow bytes around the buggy address:
@@ -137,20 +217,4 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   Left alloca redzone:     ca
   Right alloca redzone:    cb
   Shadow gap:              cc
-==1749==ABORTING
->>>> [3] rotate_right1 <<<<
-Executing command 'open' ...
-Executing command 'rotate_right' ...
-Executing command 'save' ...
-Images differ at pixel (250, 30)
-255 255 255 vs 255 3 3
->>>> [4] rotate_right2 <<<<
-Executing command 'open' ...
-Executing command 'rotate_right' ...
-Executing command 'rotate_right' ...
-Executing command 'save' ...
->>>> [5] rotate_right3 <<<<
-Executing command 'open' ...
-Executing command 'rotate_right' ...
-Executing command 'rotate_right' ...
-Executing command 'save' ...
+==60==ABORTING
