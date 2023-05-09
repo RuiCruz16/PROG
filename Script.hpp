@@ -19,7 +19,7 @@ namespace prog
     void fill(int x, int y, int w, int h, Color c);
     void h_mirror();
     void v_mirror();
-    void add(const std::string &filename, Color c, int x, int y);
+    void add(const std::string &filename,Color c, int x, int y);
     void crop(int x, int y, int w, int h);
     void rotate_left();
     void rotate_right();

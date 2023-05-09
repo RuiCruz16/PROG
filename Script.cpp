@@ -82,22 +82,22 @@ namespace prog {
                 v_mirror();
                 continue;
             }
-            //if (command == "add") {
-                //string filename;
-                //int r, g, b, x, y;
-                //input >> filename;
-                //input >> r >> g >> b >> x >> y;
-                //Color c;
-                //c.red() = r, c.green() = g, c.blue() = b; 
-                //add(filename,c,x,y);
-                //continue;
-            //}
-            //if (command == "crop") {
-                //int x, y, w, h;
-                //input >> x >> y >> w >> h;
-                //crop(x,y,w,h);
-                //continue;
-            //}
+            if (command == "add") {
+                string filename;
+                int r, g, b, x, y;
+                input >> filename;
+                input >> r >> g >> b >> x >> y;
+                Color c;
+                c.red() = r, c.green() = g, c.blue() = b; 
+                add(filename,c,x,y);
+                continue;
+            }
+            if (command == "crop") {
+                int x, y, w, h;
+                input >> x >> y >> w >> h;
+                crop(x,y,w,h);
+                continue;
+            }
             if (command == "rotate_left") {
                 rotate_left();
                 continue;
@@ -194,11 +194,35 @@ namespace prog {
         }
     }
     
-    //void Script::add(const std::string &filename, Color c, int x, int y)
+    void Script::add(const std::string &filename, Color c, int x, int y){
+        Image* aux = loadFromPNG(filename);
+        for (int i = x; i < x + aux->width(); i++)
+        {
+            for (int j = y; j < y + aux->height(); j++) {
+                if (Color::compare_colors(aux->at(i-x,j-y), c)){
+                    continue;
+                }
+                else{
+                    image->at(i,j) = aux->at(i-x,j-y);
+                }
+            }
+        }
+        delete aux;
+    }
 
-    //void Script::crop(int x, int y, int w, int h)
+    void Script::crop(int x, int y, int w, int h) {
+        Image* aux = new Image(w, h);
+        for (int i = x; i < x + w; i++)
+        {
+            for (int j = y; j < y + h; j++) {
+                aux->at(i - x, j - y) = image->at(i, j);
+            }
+        }
+        delete image;
+        image = aux;
+    }
 
-    void Script::rotate_left(){ // 2 testes passam!
+    void Script::rotate_left(){
         if (image->width() == image->height()) {
             Image* aux = new Image(image->width(), image->height()); // mesmas dimensões da original
             for (int i = 0; i < image->width(); i++) {
@@ -208,19 +232,16 @@ namespace prog {
             }
             for (int x = 0; x < image->width(); x++) {
                 for (int y = 0; y < image->height(); y++) {
-                    if((x > image->width()/2 and y <= image->height()/2) or (x <= image->width()/2 and y > image->height()/2))
-                        image->at(y,image->width() - x -1) = aux->at(x,y);
-                    if((x <= image->width()/2 and y <= image->height()/2) or (x > image->width()/2 and y > image->height()/2))
-                        image->at(y,image->height() - x - 1) = aux->at(x,y);
+                    image->at(y,image->width() - x -1) = aux->at(x,y);
                 }
             }
             delete aux;
         }
         else {
             Image* aux = new Image(image->height(), image->width());
-            for (int i = 0; i < image->width(); i++) {
-                for (int j = 0; j < image->height(); j++) {
-                    aux->at(image->width() -1 - j,i) = image->at(i,j);
+            for (int j = 0; j < image->height(); j++) {
+                for (int i = 0; i < image->width(); i++) {
+                    aux->at(j, image->width() - i - 1) = image->at(i,j);
                 }
             }
             delete image;
@@ -228,7 +249,7 @@ namespace prog {
         }
     }
 
-    void Script::rotate_right(){ // 2 testes passam!
+    void Script::rotate_right(){
         if (image->width() == image->height()) {
             Image* aux = new Image(image->width(), image->height()); // mesmas dimensões da original
             for (int i = 0; i < image->width(); i++) {
@@ -238,10 +259,7 @@ namespace prog {
             }
             for (int x = 0; x < image->width(); x++) {
                 for (int y = 0; y < image->height(); y++) {
-                    if((x > image->width()/2 and y <= image->height()/2) or (x <= image->width()/2 and y > image->height()/2))
-                        image->at(image->height() - y - 1, x) = aux->at(x,y);
-                    if((x <= image->width()/2 and y <= image->height()/2) or (x > image->width()/2 and y > image->height()/2))
-                        image->at(image->width() - y - 1, image->height() - x - 1) = aux->at(x,y);
+                    image->at(image->width() - y - 1, x) = aux->at(x,y);
                 }
             }
             delete aux;
