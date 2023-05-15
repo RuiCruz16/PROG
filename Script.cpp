@@ -106,6 +106,12 @@ namespace prog {
                 rotate_right();
                 continue;
             }
+            /*if (command == "median_filter") {
+                int ws;
+                input >> ws;
+                median_filter(ws);
+                continue;
+            }*/
         }
     }
     void Script::open() {
@@ -275,4 +281,8 @@ namespace prog {
             image = aux;
         }
     }
+
+    /*void Script::median_filter(int ws){
+
+    }*/
 }
