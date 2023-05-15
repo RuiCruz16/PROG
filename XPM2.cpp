@@ -93,6 +93,7 @@ namespace prog {
             getline(in,line);
             for (int x = 0; x < w; x++)
             {
+                
                 imagem_final->at(x,y) = Colors[string(1, line[x])];
             }
         }

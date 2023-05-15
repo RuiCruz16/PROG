@@ -109,7 +109,7 @@ namespace prog {
             if (command == "xpm2_open") {
                 string file;
                 input >> file;
-                loadFromXPM2(file);
+                image = loadFromXPM2(file);
                 continue;
             }
             /*if (command == "median_filter") {
