@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include <map>
+#include <iomanip>
 using namespace std;
 
 namespace prog {
@@ -60,7 +61,8 @@ namespace prog {
         string character, temp, hex;
         int w,h,num_colors,c;
         Color cor;
-        map<string, Color> Colors; // gênero de um dicionário que armazena informações
+        map<string, Color> Colors;
+
         for (int i = 0; i < 2; i++)
         {
             getline(in,line);
@@ -71,7 +73,9 @@ namespace prog {
                 aux >> w >> h >> num_colors >> c;
             }
         }
+
         Image* imagem_final = new Image(w, h); // criar nova imagem com as dimensões propostas
+
         for (int j = 0; j < num_colors; j++)
         {
             getline(in,line);
@@ -79,18 +83,20 @@ namespace prog {
             aux >> character >> temp >> hex;
             hex = to_upper(hex);
             cor.red() = hex_to_dec(hex.substr(1,2));
-            cor.green() = hex_to_dec(hex.substr(3,4));
-            cor.blue() = hex_to_dec(hex.substr(5,6));
+            cor.green() = hex_to_dec(hex.substr(3,2));
+            cor.blue() = hex_to_dec(hex.substr(5,2));
             Colors.insert({character, cor});
         }
+
         for (int y = 0; y < h; y++)
         {
             getline(in,line);
             for (int x = 0; x < w; x++)
             {
-                imagem_final->at(y,x) = Colors[string(1, line[x])];
+                imagem_final->at(x,y) = Colors[string(1, line[x])];
             }
         }
+
         return imagem_final;
     }
 
