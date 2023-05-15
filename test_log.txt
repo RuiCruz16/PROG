@@ -1,26 +1,130 @@
->>>> [1] rotate_left1 <<<<
-Executing command 'open' ...
-Executing command 'rotate_left' ...
+>>>> [1] xpm2_open1 <<<<
+Executing command 'xpm2_open' ...
+Executing command 'input/blarg.xpm' ...
 Executing command 'save' ...
->>>> [2] rotate_left2 <<<<
-Executing command 'open' ...
-Executing command 'rotate_left' ...
-Executing command 'rotate_left' ...
+PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct Image'
+Image.cpp:22:12: runtime error: member access within null pointer of type 'const struct Image'
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==739==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x55d4364d9b5f bp 0x7ffe6aab3f00 sp 0x7ffe6aab3ef0 T0)
+==739==The signal is caused by a READ memory access.
+==739==Hint: address points to the zero page.
+    #0 0x55d4364d9b5f in prog::Image::height() const /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:22
+    #1 0x55d43652ced6 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Utilizador/Documents/GitHub/project/PNG.cpp:31
+    #2 0x55d4364e428c in prog::Script::save() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:136
+    #3 0x55d4364e0149 in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:49
+    #4 0x55d4364cb51b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9951b)
+    #5 0x55d4364cc31d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9a31d)
+    #6 0x55d4364ce193 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9c193)
+    #7 0x55d4364ca5e0 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
+    #8 0x7ffb9dc8dd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #9 0x7ffb9dc8de3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #10 0x55d4364ca174 in _start (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x98174)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:22 in prog::Image::height() const
+==739==ABORTING
+>>>> [2] xpm2_open2 <<<<
+Executing command 'xpm2_open' ...
+Executing command 'input/squares.xpm' ...
 Executing command 'save' ...
->>>> [3] rotate_left3 <<<<
-Executing command 'open' ...
-Executing command 'rotate_left' ...
-Executing command 'rotate_left' ...
-Executing command 'rotate_left' ...
+PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct Image'
+Image.cpp:22:12: runtime error: member access within null pointer of type 'const struct Image'
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==740==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x55d4364d9b5f bp 0x7ffe6aab3f00 sp 0x7ffe6aab3ef0 T0)
+==740==The signal is caused by a READ memory access.
+==740==Hint: address points to the zero page.
+    #0 0x55d4364d9b5f in prog::Image::height() const /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:22
+    #1 0x55d43652ced6 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Utilizador/Documents/GitHub/project/PNG.cpp:31
+    #2 0x55d4364e428c in prog::Script::save() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:136
+    #3 0x55d4364e0149 in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:49
+    #4 0x55d4364cb51b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9951b)
+    #5 0x55d4364cc31d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9a31d)
+    #6 0x55d4364ce193 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9c193)
+    #7 0x55d4364ca5e0 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
+    #8 0x7ffb9dc8dd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #9 0x7ffb9dc8de3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #10 0x55d4364ca174 in _start (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x98174)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:22 in prog::Image::height() const
+==740==ABORTING
+>>>> [3] xpm2_open3 <<<<
+Executing command 'xpm2_open' ...
+Executing command 'input/tetris.xpm' ...
 Executing command 'save' ...
->>>> [4] rotate_left_rotate_right1 <<<<
-Executing command 'open' ...
-Executing command 'rotate_left' ...
-Executing command 'rotate_right' ...
+PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct Image'
+Image.cpp:22:12: runtime error: member access within null pointer of type 'const struct Image'
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==741==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x55d4364d9b5f bp 0x7ffe6aab3f00 sp 0x7ffe6aab3ef0 T0)
+==741==The signal is caused by a READ memory access.
+==741==Hint: address points to the zero page.
+    #0 0x55d4364d9b5f in prog::Image::height() const /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:22
+    #1 0x55d43652ced6 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Utilizador/Documents/GitHub/project/PNG.cpp:31
+    #2 0x55d4364e428c in prog::Script::save() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:136
+    #3 0x55d4364e0149 in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:49
+    #4 0x55d4364cb51b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9951b)
+    #5 0x55d4364cc31d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9a31d)
+    #6 0x55d4364ce193 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9c193)
+    #7 0x55d4364ca5e0 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
+    #8 0x7ffb9dc8dd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #9 0x7ffb9dc8de3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #10 0x55d4364ca174 in _start (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x98174)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:22 in prog::Image::height() const
+==741==ABORTING
+>>>> [4] xpm2_open4 <<<<
+Executing command 'xpm2_open' ...
+Executing command 'input/mondrian.xpm' ...
 Executing command 'save' ...
->>>> [5] rotate_left_rotate_right2 <<<<
-Executing command 'open' ...
-Executing command 'rotate_left' ...
-Executing command 'rotate_right' ...
-Executing command 'rotate_right' ...
+PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct Image'
+Image.cpp:22:12: runtime error: member access within null pointer of type 'const struct Image'
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==742==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x55d4364d9b5f bp 0x7ffe6aab3f00 sp 0x7ffe6aab3ef0 T0)
+==742==The signal is caused by a READ memory access.
+==742==Hint: address points to the zero page.
+    #0 0x55d4364d9b5f in prog::Image::height() const /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:22
+    #1 0x55d43652ced6 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Utilizador/Documents/GitHub/project/PNG.cpp:31
+    #2 0x55d4364e428c in prog::Script::save() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:136
+    #3 0x55d4364e0149 in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:49
+    #4 0x55d4364cb51b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9951b)
+    #5 0x55d4364cc31d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9a31d)
+    #6 0x55d4364ce193 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9c193)
+    #7 0x55d4364ca5e0 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
+    #8 0x7ffb9dc8dd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #9 0x7ffb9dc8de3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #10 0x55d4364ca174 in _start (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x98174)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:22 in prog::Image::height() const
+==742==ABORTING
+>>>> [5] xpm2_open5 <<<<
+Executing command 'xpm2_open' ...
+Executing command 'input/lion.xpm' ...
 Executing command 'save' ...
+PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct Image'
+Image.cpp:22:12: runtime error: member access within null pointer of type 'const struct Image'
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==743==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000004 (pc 0x55d4364d9b5f bp 0x7ffe6aab3f00 sp 0x7ffe6aab3ef0 T0)
+==743==The signal is caused by a READ memory access.
+==743==Hint: address points to the zero page.
+    #0 0x55d4364d9b5f in prog::Image::height() const /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:22
+    #1 0x55d43652ced6 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /mnt/c/Users/Utilizador/Documents/GitHub/project/PNG.cpp:31
+    #2 0x55d4364e428c in prog::Script::save() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:136
+    #3 0x55d4364e0149 in prog::Script::run() /mnt/c/Users/Utilizador/Documents/GitHub/project/Script.cpp:49
+    #4 0x55d4364cb51b in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9951b)
+    #5 0x55d4364cc31d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9a31d)
+    #6 0x55d4364ce193 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x9c193)
+    #7 0x55d4364ca5e0 in main /mnt/c/Users/Utilizador/Documents/GitHub/project/test.cpp:186
+    #8 0x7ffb9dc8dd8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #9 0x7ffb9dc8de3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #10 0x55d4364ca174 in _start (/mnt/c/Users/Utilizador/Documents/GitHub/project/test+0x98174)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /mnt/c/Users/Utilizador/Documents/GitHub/project/Image.cpp:22 in prog::Image::height() const
+==743==ABORTING
