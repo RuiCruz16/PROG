@@ -106,6 +106,12 @@ namespace prog {
                 rotate_right();
                 continue;
             }
+            if (command == "xpm2_open") {
+                string file;
+                input >> file;
+                loadFromXPM2(file);
+                continue;
+            }
             /*if (command == "median_filter") {
                 int ws;
                 input >> ws;
