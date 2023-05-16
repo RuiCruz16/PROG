@@ -36,6 +36,12 @@ namespace prog {
         string command;
         while (input >> command) {
             cout << "Executing command '" << command << "' ..." << endl;
+            if (command == "xpm2_save") {
+                string file;
+                input >> file;
+                saveToXPM2(file, image);
+                continue;
+            }
             if (command == "open") {
                 open();
                 continue;
@@ -110,12 +116,6 @@ namespace prog {
                 string file;
                 input >> file;
                 image = loadFromXPM2(file);
-                continue;
-            }
-            if (command == "xpm2_save") {
-                string file;
-                input >> file;
-                saveToXPM2(file, image);
                 continue;
             }
             /*if (command == "median_filter") {

@@ -42,4 +42,16 @@ namespace prog {
         else
             return false;
     }
+    bool Color::operator<(const Color& other) const {
+    if (r_ < other.red()){
+        return true;
+    }
+    if (r_ == other.red() && g_ < other.green()){
+        return true;
+    }
+    if (r_ == other.red() && g_ == other.green() && b_ < other.blue()){
+        return true;
+    }
+    return false;
+    }
 }

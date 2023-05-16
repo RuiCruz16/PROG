@@ -39,19 +39,22 @@ namespace prog {
         return res;
     }
 
-    string dec_to_hex(int num_dec){ // para cada cor (r/g/b)
+    string dec_to_hex(int num_dec){
         string res = "";
-        while (num_dec != 0){
+        while (num_dec > 0){
             int aux = num_dec % 16;
             char hex_digit;
             if (aux < 10) {
-            hex_digit = aux + '0';
+            hex_digit = char(aux + '0');
             } 
             else {
-            hex_digit = aux - 10 + 'A';
+            hex_digit = char(aux - 10 + 'A');
             }
             res = hex_digit + res;
             num_dec /= 16;
+        }
+        while(res.length() < 2){
+            res += "0";
         }
         return res;
     }
@@ -76,7 +79,7 @@ namespace prog {
             }
         }
 
-        Image* imagem_final = new Image(w, h); // criar nova imagem com as dimensões propostas
+        Image* imagem_final = new Image(w,h); // criar nova imagem com as dimensões propostas
 
         for (int j = 0; j < num_colors; j++)
         {
@@ -105,26 +108,30 @@ namespace prog {
 
     void saveToXPM2(const std::string& file, const Image* image) {
         int num_aux = 0;
-        string aux = "#";
         ofstream out(file);
-        out << "! XPM2" << "\n";
-        int w, h, colors;
+        cout << "! XPM2" << "\n";
+        int w, h;
         w = image->width();
         h = image->height();
         map<Color, char> Colors;
         for (int i = 0; i < image->width(); i++) {
-                for (int j = 0; j < image->height(); j++) {
-                     if (Colors.find(image->at(i, j)) != Colors.end()) {
-                        continue;
-                    } else {
-                        Colors.insert({image->at(i, j), '!' + num_aux});
-                        num_aux++;
-                    }
-                }
+            for (int j = 0; j < image->height(); j++) {
+                if (Colors.find(image->at(i, j)) == Colors.end()) {
+                    Colors.insert({image->at(i, j), char('!' + num_aux)});
+                    num_aux++;
+                }   
+            }
         }
-        out << w << " " << h << " " << Colors.size() << " 1" << "\n";
+        cout << w << " " << h << " " << num_aux << " 1" << "\n";
         for (auto& pair: Colors) {
-            string red = dec_to_hex(Colors.first.red());
+            string hex = dec_to_hex(pair.first.red()) + dec_to_hex(pair.first.green()) + dec_to_hex(pair.first.blue());
+            cout << pair.second << " c" << " #" << hex << "\n";
+        }
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
+                cout << Colors[image->at(x,y)];
+            }
+            cout << "\n";
         }
     }
 }
