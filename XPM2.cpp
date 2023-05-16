@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 #include <iomanip>
+#include <vector>
 using namespace std;
 
 namespace prog {
@@ -58,10 +59,11 @@ namespace prog {
     Image* loadFromXPM2(const std::string& file) {
         ifstream in(file);
         string aux, line;
-        string character, temp, hex;
+        string temp, hex;
+        char character;
         int w,h,num_colors,c;
         Color cor;
-        map<string, Color> Colors;
+        map<char, Color> Colors;
 
         for (int i = 0; i < 2; i++)
         {
@@ -94,7 +96,7 @@ namespace prog {
             for (int x = 0; x < w; x++)
             {
                 
-                imagem_final->at(x,y) = Colors[string(1, line[x])];
+                imagem_final->at(x,y) = Colors[line[x]];
             }
         }
 
@@ -102,6 +104,27 @@ namespace prog {
     }
 
     void saveToXPM2(const std::string& file, const Image* image) {
-        
+        int num_aux = 0;
+        string aux = "#";
+        ofstream out(file);
+        out << "! XPM2" << "\n";
+        int w, h, colors;
+        w = image->width();
+        h = image->height();
+        map<Color, char> Colors;
+        for (int i = 0; i < image->width(); i++) {
+                for (int j = 0; j < image->height(); j++) {
+                     if (Colors.find(image->at(i, j)) != Colors.end()) {
+                        continue;
+                    } else {
+                        Colors.insert({image->at(i, j), '!' + num_aux});
+                        num_aux++;
+                    }
+                }
+        }
+        out << w << " " << h << " " << Colors.size() << " 1" << "\n";
+        for (auto& pair: Colors) {
+            string red = dec_to_hex(Colors.first.red());
+        }
     }
 }

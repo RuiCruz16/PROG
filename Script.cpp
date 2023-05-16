@@ -112,6 +112,12 @@ namespace prog {
                 image = loadFromXPM2(file);
                 continue;
             }
+            if (command == "xpm2_save") {
+                string file;
+                input >> file;
+                saveToXPM2(file, image);
+                continue;
+            }
             /*if (command == "median_filter") {
                 int ws;
                 input >> ws;
