@@ -9,7 +9,7 @@ namespace prog
 {
   class Image
   {
-  private: // TODO
+  private:
     int width_;
     int height_;
     vector<vector<Color>> imagem;

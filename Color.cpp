@@ -5,13 +5,11 @@ namespace prog {
         r_ = 0;
         g_ = 0;
         b_ = 0;
-        // teste
     }
     Color::Color(const Color& other) {
         r_ = other.r_;
         g_ = other.g_;
         b_ = other.b_;
-        // comentario
     }
     Color::Color(rgb_value red, rgb_value green, rgb_value blue) {
         r_ = red;
@@ -36,12 +34,14 @@ namespace prog {
     rgb_value Color::blue() const {
         return b_;
     }
+    // function that allows you to compare two colors, and if they are equal returns "true"
     bool Color::compare_colors(Color c1, Color c2){
         if (c1.red() == c2.red() and c1.green() == c2.green() and c1.blue() == c2.blue())
             return true;
         else
             return false;
     }
+    // operator that compares two colors (the current and "other") using the corresponding values of their components (red, green, blue)
     bool Color::operator<(const Color& other) const {
     if (r_ < other.red()){
         return true;
