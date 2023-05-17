@@ -106,10 +106,11 @@ namespace prog {
         return imagem_final;
     }
 
+    // image to xpm2
     void saveToXPM2(const std::string& file, const Image* image) {
         int num_aux = 0;
         ofstream out(file);
-        cout << "! XPM2" << "\n";
+        out << "! XPM2" << "\n";
         int w, h;
         w = image->width();
         h = image->height();
@@ -122,16 +123,16 @@ namespace prog {
                 }   
             }
         }
-        cout << w << " " << h << " " << num_aux << " 1" << "\n";
+        out << w << " " << h << " " << num_aux << " 1" << "\n";
         for (auto& pair: Colors) {
             string hex = dec_to_hex(pair.first.red()) + dec_to_hex(pair.first.green()) + dec_to_hex(pair.first.blue());
-            cout << pair.second << " c" << " #" << hex << "\n";
+            out << pair.second << " c" << " #" << hex << "\n";
         }
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
-                cout << Colors[image->at(x,y)];
+                out << Colors[image->at(x,y)];
             }
-            cout << "\n";
+            out << "\n";
         }
     }
 }
