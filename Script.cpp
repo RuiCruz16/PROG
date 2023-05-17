@@ -296,21 +296,34 @@ namespace prog {
         }
     }
 
-    void Script::find_median(int ws, int x, int y){
+    void Script::find_neighbours(int ws, int x, int y){
         int max_x, max_y, min_x, min_y;
         min_x = max(0, x - ws / 2);
         max_x = min(image->width() - 1, x + ws / 2);
         min_y = max(0, y - ws / 2);
         max_y = min(image->height() -1, y + ws / 2);
-        map <int,int> coord;
-        vector<int> red;
-        vector<int> green;
-        vector<int> blue;
+        //map <int,int> coord;
+        vector<unsigned char> red, green, blue;
         for (int x = min_x; x <= max_x; x++) {
             for (int y = min_y; y <= max_y; y++) {
-                coord.insert({x,y});
+                //coord.insert({x,y});
+                red.push_back(image->at(x,y).red());
+                green.push_back(image->at(x,y).green());
+                blue.push_back(image->at(x,y).blue());
             }
         }
+        sort(red.begin(), red.end());
+        sort(green.begin(), green.end());
+        sort(blue.begin(), blue.end());
+        median_red = find_median(red);
+        median_green = find_median(green);
+        median_blue = find_median(blue);
+    }
+
+    unsigned char Script::find_median(vector<unsigned char> c) {
+        int real_size = c.size() - 1;
+        if (real_size % 2 != 0) return c[(real_size + 1) / 2];
+        else return (c[real_size / 2] + c[(real_size / 2) + 1]) / 2;
     }
 
     void Script::median_filter(int ws){
