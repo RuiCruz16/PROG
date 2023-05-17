@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <algorithm>
+#include <vector>
 #include "Script.hpp"
 #include "PNG.hpp"
 #include "XPM2.hpp"
@@ -118,12 +120,12 @@ namespace prog {
                 image = loadFromXPM2(file);
                 continue;
             }
-            /*if (command == "median_filter") {
+            if (command == "median_filter") {
                 int ws;
                 input >> ws;
                 median_filter(ws);
                 continue;
-            }*/
+            }
         }
     }
     void Script::open() {
@@ -294,7 +296,28 @@ namespace prog {
         }
     }
 
-    /*void Script::median_filter(int ws){
+    void Script::find_median(int ws, int x, int y){
+        int max_x, max_y, min_x, min_y;
+        min_x = max(0, x - ws / 2);
+        max_x = min(image->width() - 1, x + ws / 2);
+        min_y = max(0, y - ws / 2);
+        max_y = min(image->height() -1, y + ws / 2);
+        map <int,int> coord;
+        vector<int> red;
+        vector<int> green;
+        vector<int> blue;
+        for (int x = min_x; x <= max_x; x++) {
+            for (int y = min_y; y <= max_y; y++) {
+                coord.insert({x,y});
+            }
+        }
+    }
 
-    }*/
+    void Script::median_filter(int ws){
+        for (int x = 0; x < image->width(); x++) {
+            for (int y = 0; y < image->height(); y++) {
+                
+            }
+        }
+    }
 }

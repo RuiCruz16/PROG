@@ -23,6 +23,7 @@ namespace prog
     void crop(int x, int y, int w, int h);
     void rotate_left();
     void rotate_right();
+    void find_median(int ws, int x, int y);
     //void median_filter(int ws);
 
   private:
