@@ -23,7 +23,7 @@ namespace prog
     void crop(int x, int y, int w, int h);
     void rotate_left();
     void rotate_right();
-    void find_neighbours(int ws, int x, int y, Color& c);
+    Color find_neighbours(int ws, int x, int y);
     unsigned char find_median(vector<unsigned char> c);
     void median_filter(int ws);
 

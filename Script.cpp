@@ -296,14 +296,14 @@ namespace prog {
         }
     }
 
-    void Script::find_neighbours(int ws, int x, int y, Color& c) {
+    Color Script::find_neighbours(int ws, int x, int y){
         int max_x, max_y, min_x, min_y;
-        min_x = std::max(0, x - ws / 2);
-        max_x = std::min(image->width() - 1, x + ws / 2);
-        min_y = std::max(0, y - ws / 2);
-        max_y = std::min(image->height() - 1, y + ws / 2);
-
-        std::vector<unsigned char> red, green, blue;
+        Color res;
+        min_x = max(0, x - ws / 2);
+        max_x = min(image->width() - 1, x + ws / 2);
+        min_y = max(0, y - ws / 2);
+        max_y = min(image->height() - 1, y + ws / 2);
+        vector<unsigned char> red, green, blue;
         for (int i = min_x; i <= max_x; i++) {
             for (int j = min_y; j <= max_y; j++) {
                 red.push_back(image->at(i, j).red());
@@ -311,20 +311,19 @@ namespace prog {
                 blue.push_back(image->at(i, j).blue());
             }
         }
-        std::sort(red.begin(), red.end());
-        std::sort(green.begin(), green.end());
-        std::sort(blue.begin(), blue.end());
-
+        sort(red.begin(), red.end());
+        sort(green.begin(), green.end());
+        sort(blue.begin(), blue.end());
         unsigned char median_red = find_median(red);
         unsigned char median_green = find_median(green);
         unsigned char median_blue = find_median(blue);
+        res.red() = median_red;
+        res.green() = median_green;
+        res.blue() = median_blue;
+        return res;
+    }
 
-        c.red() = median_red;
-        c.green() = median_green;
-        c.blue() = median_blue;
-}
-
-    unsigned char Script::find_median(std::vector<unsigned char> c) {
+    unsigned char Script::find_median(vector<unsigned char> c) {
         int size = c.size();
         int mid = size / 2;
         if (size % 2 != 0)
@@ -333,12 +332,20 @@ namespace prog {
             return (c[mid - 1] + c[mid]) / 2;
     }
 
-    void Script::median_filter(int ws) {
-        for (int x = 0; x < image->width(); x++) {
-            for (int y = 0; y < image->height(); y++) {
-                Color& c = image->at(x, y);
-                find_neighbours(ws, x, y, c);
+    void Script::median_filter(int ws){
+        Image* aux = new Image(image->width(), image->height());
+        for (int i = 0; i < image->width(); i++) {
+            for (int j = 0; j < image->height(); j++) {
+                aux->at(i,j) = image->at(i,j);
             }
         }
+        for (int x = 0; x < image->width(); x++) {
+            for (int y = 0; y < image->height(); y++) {
+                Color c = find_neighbours(ws, x, y);
+                aux->at(x,y) = c;
+            }
+        }
+        delete image;
+        image = aux;
     }
 }
