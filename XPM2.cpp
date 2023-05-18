@@ -61,9 +61,10 @@ namespace prog {
         char character;
         int w,h,num_colors,c;
         Color cor;
-        map<char, Color> Colors; // comentar
+        map<char, Color> Colors; // map that saves each character and its respective color
 
-        for (int i = 0; i < 2; i++) // comentar
+        // loop that loops through the first two lines of the file to get the width, height and number of colors the image will have
+        for (int i = 0; i < 2; i++) 
         {
             getline(in,line);
             if (line == "! XPM2")
@@ -74,9 +75,10 @@ namespace prog {
             }
         }
 
-        Image* imagem_final = new Image(w,h); // criar nova imagem com as dimensões propostas
+        Image* imagem_final = new Image(w,h); // creates an image with the obtained dimensions
 
-        for (int j = 0; j < num_colors; j++) // comentar 
+        // loop that iterates according to the number of colors and saves the obtained pair in the map
+        for (int j = 0; j < num_colors; j++)
         {
             getline(in,line);
             istringstream aux(line);
@@ -88,12 +90,12 @@ namespace prog {
             Colors.insert({character, cor});
         }
 
-        for (int y = 0; y < h; y++) // comentar
+        // loop that goes through the file and puts in the image the color associated to the identified character
+        for (int y = 0; y < h; y++)
         {
             getline(in,line);
             for (int x = 0; x < w; x++)
             {
-                
                 imagem_final->at(x,y) = Colors[line[x]];
             }
         }
@@ -109,7 +111,8 @@ namespace prog {
         w = image->width();
         h = image->height();
         map<Color, char> Colors;
-        // comentar
+
+        // loop which cycles through the image, and if the color is not present in the map, it will be added as a pair with a character
         for (int i = 0; i < image->width(); i++) {
             for (int j = 0; j < image->height(); j++) {
                 if (Colors.find(image->at(i, j)) == Colors.end()) {
@@ -119,12 +122,14 @@ namespace prog {
             }
         }
         out << w << " " << h << " " << num_aux << " 1" << "\n";
-        // comentar
+
+        // loop that writes to the file the characters and the color each one corresponds to, in hexadecimal format 
         for (auto& pair: Colors) {
             string hex = dec_to_hex(pair.first.red()) + dec_to_hex(pair.first.green()) + dec_to_hex(pair.first.blue());
             out << pair.second << " c" << " #" << hex << "\n";
         }
-        // comentar
+
+        // loop that inserts into the file the character that corresponds to the color of the image pixel
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
                 out << Colors[image->at(x,y)];

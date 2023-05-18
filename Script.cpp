@@ -213,6 +213,7 @@ namespace prog {
     
     void Script::add(const std::string &filename, Color c, int x, int y){
         Image* aux = loadFromPNG(filename); // load the image according to the directory given by the filename
+
         for (int i = x; i < x + aux->width(); i++) 
         {
             for (int j = y; j < y + aux->height(); j++) {
@@ -227,11 +228,13 @@ namespace prog {
                 }
             }
         }
+
         delete aux;
     }
 
     void Script::crop(int x, int y, int w, int h) {
         Image* aux = new Image(w, h); // create a new image with the given width and height
+
         for (int i = x; i < x + w; i++) 
         {
             for (int j = y; j < y + h; j++) {
@@ -239,6 +242,7 @@ namespace prog {
                 aux->at(i - x, j - y) = image->at(i, j);
             }
         }
+
         // the content of the original image isn't needed so it can be deleted (to free some memory)
         delete image;
         // then assign the auxiliar image to the original image
@@ -249,23 +253,27 @@ namespace prog {
         // create an auxiliar image with the reversed dimensions of the original image in case the width and height of the original image are different
         // (even if the dimensions are equal, it doesn't affect anything)
         Image* aux = new Image(image->height(), image->width()); 
+
         for (int j = 0; j < image->height(); j++) {
             for (int i = 0; i < image->width(); i++) {
                 // fill the columns (starting from the bottom) of the auxiliar image with the lines of the original image
                 aux->at(j, image->width() - i - 1) = image->at(i,j);
             }
         }
+
         delete image;
         image = aux;
     }
 
     void Script::rotate_right(){
         Image* aux = new Image(image->height(), image->width());
+
         for (int i = 0; i < image->width(); i++) {
             for (int j = 0; j < image->height(); j++) {
                 aux->at(image->height() - j - 1,i) = image->at(i,j);
             }
         }
+
         delete image;
         image = aux;
     }
@@ -281,6 +289,7 @@ namespace prog {
         min_y = max(0, y - ws / 2);
         max_y = min(image->height() - 1, y + ws / 2);
         vector<unsigned char> red, green, blue;
+
         // fill a vector of reds, greens and blues with all the respective pixels of the neighbours and the pixel itself
         for (int i = min_x; i <= max_x; i++) {
             for (int j = min_y; j <= max_y; j++) {
@@ -289,10 +298,12 @@ namespace prog {
                 blue.push_back(image->at(i, j).blue());
             }
         }
+
         // sort the vectors in order to calculate the median
         sort(red.begin(), red.end());
         sort(green.begin(), green.end());
         sort(blue.begin(), blue.end());
+
         // calculate the median using an auxiliar function
         unsigned char median_red = find_median(red);
         unsigned char median_green = find_median(green);
@@ -300,6 +311,7 @@ namespace prog {
         res.red() = median_red;
         res.green() = median_green;
         res.blue() = median_blue;
+
         // return a color with the median of red, green and blue
         return res;
     }
@@ -317,11 +329,13 @@ namespace prog {
 
     void Script::median_filter(int ws){
         Image* aux = new Image(image->width(), image->height()); // create an auxiliar image with the dimensions of the current image
+
         for (int i = 0; i < image->width(); i++) {
             for (int j = 0; j < image->height(); j++) {
-                aux->at(i,j) = image->at(i,j); // just copy the pixels
+                aux->at(i,j) = image->at(i,j); // copy the pixels
             }
         }
+
         for (int x = 0; x < image->width(); x++) {
             for (int y = 0; y < image->height(); y++) {
                 // calculate the median filter of each pixel in the image and then assign it to the auxiliar image
@@ -329,6 +343,7 @@ namespace prog {
                 aux->at(x,y) = c;
             }
         }
+
         delete image;
         image = aux;
     }
