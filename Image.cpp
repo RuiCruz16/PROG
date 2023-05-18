@@ -7,7 +7,7 @@ namespace prog
   {
     width_ = w; 
     height_ = h; 
-    imagem = vector<vector<Color>>(w,vector<Color>(h,fill)); // creates a two-dimensional vector with "w" columns and "h" rows, filled with the color "fill"
+    img = vector<vector<Color>>(w,vector<Color>(h,fill)); // creates a two-dimensional vector with "w" columns and "h" rows, filled with the color "fill"
   }
   Image::~Image()
   {
@@ -23,10 +23,10 @@ namespace prog
   }
   Color& Image::at(int x, int y)
   {
-    return imagem[x][y]; // returns the color of the pixel at position (x,y)
+    return img[x][y]; // returns the color of the pixel at position (x,y)
   }
   const Color& Image::at(int x, int y) const
   {
-    return imagem[x][y];
+    return img[x][y];
   }
 }

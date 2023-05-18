@@ -12,7 +12,7 @@ namespace prog
   private:
     int width_;
     int height_;
-    vector<vector<Color>> imagem;
+    vector<vector<Color>> img;
   public:
     Image(int w, int h, const Color &fill = {255, 255, 255});
     ~Image();

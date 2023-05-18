@@ -150,20 +150,20 @@ namespace prog {
         saveToPNG(filename, image);
     }
     void Script::replace(Color c1, Color c2){
-        for (int i = 0; i < image->width(); i++)
+        for (int i = 0; i < image->width(); i++) // scroll through the width of the image
         {
-            for (int j = 0; j < image->height(); j++)
+            for (int j = 0; j < image->height(); j++) // scroll through the height of the image
             {
-                if(Color::compare_colors(image->at(i,j), c1)){
-                    image->at(i,j) = c2;
+                if(Color::compare_colors(image->at(i,j), c1)){ // if current pixel is equal to color c1 replace it with c2
+                    image->at(i,j) = c2; 
                 }
             }
         }
     }
     void Script::invert(){
-        for (int i = 0; i < image->width(); i++)
+        for (int i = 0; i < image->width(); i++) 
         {
-            for (int j = 0; j < image->height(); j++)
+            for (int j = 0; j < image->height(); j++)  
             {
                 image->at(i,j).red() = 255 - image->at(i,j).red();
                 image->at(i,j).green() = 255 - image->at(i,j).green();
@@ -185,9 +185,9 @@ namespace prog {
         }
     }
     void Script::fill(int x, int y, int w, int h, Color c){
-        for (int i = x; i < x + w; i++)
+        for (int i = x; i < x + w; i++) // loop from the x coordinate until the sum of the x coordinate with the width
         {
-            for (int j = y; j < y + h; j++)
+            for (int j = y; j < y + h; j++) // loop from the y coordinate until the sum of the y coordinate with the height
             {
                 image->at(i,j).red() = c.red();
                 image->at(i,j).green() = c.green();
@@ -196,32 +196,37 @@ namespace prog {
         }
     }
     void Script::h_mirror(){
-        for (int y = 0; y < image->height(); y++) // altura
+        for (int y = 0; y < image->height(); y++) 
         {
-            for (int x = 0; x < image->width() / 2; x++) // largura
+            for (int x = 0; x < image->width() / 2; x++)
             {
+                // mirrors the pixels horizontally by exchanging the first pixel on a row with the corresponding pixel on the opposite end of the row
                 swap(image->at(x, y), image->at(image->width() - 1 - x, y));
             } 
         }
     }
     void Script::v_mirror(){
-        for (int y = 0; y < image->height() / 2; y++) // altura
+        for (int y = 0; y < image->height() / 2; y++)
         {
-            for (int x = 0; x < image->width(); x++) // largura
+            for (int x = 0; x < image->width(); x++) 
             {
+                // mirrors the pixels vertically by exchanging the first pixel on a column with the corresponding pixel on the opposite end of the column
                 swap(image->at(x, y), image->at(x,image->height() -1 -y ));
             } 
         }
     }
     
     void Script::add(const std::string &filename, Color c, int x, int y){
-        Image* aux = loadFromPNG(filename);
-        for (int i = x; i < x + aux->width(); i++)
+        Image* aux = loadFromPNG(filename); // load the image according to the directory given by the filename
+        for (int i = x; i < x + aux->width(); i++) 
         {
             for (int j = y; j < y + aux->height(); j++) {
-                if (Color::compare_colors(aux->at(i-x,j-y), c)){
+                // if the auxiliar pixel is equal to color c do nothing
+                // auxiliar pixel is obtained by subtracting the current x coordinate (or y) with the given x coordinate (or y)
+                if (Color::compare_colors(aux->at(i-x,j-y), c)){ 
                     continue;
                 }
+                // else copy auxiliar pixel to image
                 else{
                     image->at(i,j) = aux->at(i-x,j-y);
                 }
@@ -231,14 +236,17 @@ namespace prog {
     }
 
     void Script::crop(int x, int y, int w, int h) {
-        Image* aux = new Image(w, h);
-        for (int i = x; i < x + w; i++)
+        Image* aux = new Image(w, h); // create a new image with the given width and height
+        for (int i = x; i < x + w; i++) 
         {
             for (int j = y; j < y + h; j++) {
+                // write on this new image by subtracting the current x coordinate (or y) with the given one
                 aux->at(i - x, j - y) = image->at(i, j);
             }
         }
+        // the content of the original image isn't needed so it can be deleted (to free some memory)
         delete image;
+        // then we assign the auxiliar image to the original image
         image = aux;
     }
 
@@ -296,6 +304,8 @@ namespace prog {
         }
     }
 
+    // auxiliar function of the median filter
+    // find neighbours of a certain pixel according to the given ws
     Color Script::find_neighbours(int ws, int x, int y){
         int max_x, max_y, min_x, min_y;
         Color res;
@@ -304,6 +314,7 @@ namespace prog {
         min_y = max(0, y - ws / 2);
         max_y = min(image->height() - 1, y + ws / 2);
         vector<unsigned char> red, green, blue;
+        // fill a vector of reds, greens and blues with all the respective pixels of the neighbours and the pixel itself
         for (int i = min_x; i <= max_x; i++) {
             for (int j = min_y; j <= max_y; j++) {
                 red.push_back(image->at(i, j).red());
@@ -311,18 +322,24 @@ namespace prog {
                 blue.push_back(image->at(i, j).blue());
             }
         }
+        // sort the vectors in order to calculate the median
         sort(red.begin(), red.end());
         sort(green.begin(), green.end());
         sort(blue.begin(), blue.end());
+        // calculate the median using an auxiliar function
         unsigned char median_red = find_median(red);
         unsigned char median_green = find_median(green);
         unsigned char median_blue = find_median(blue);
         res.red() = median_red;
         res.green() = median_green;
         res.blue() = median_blue;
+        // return a color with the median of red, green and blue
         return res;
     }
 
+
+    // auxiliar function of the median filter
+    // find the median of a vector of colors (red, green or blue)
     unsigned char Script::find_median(vector<unsigned char> c) {
         int size = c.size();
         int mid = size / 2;
@@ -333,14 +350,15 @@ namespace prog {
     }
 
     void Script::median_filter(int ws){
-        Image* aux = new Image(image->width(), image->height());
+        Image* aux = new Image(image->width(), image->height()); // create an auxiliar image with the dimensions of the current image
         for (int i = 0; i < image->width(); i++) {
             for (int j = 0; j < image->height(); j++) {
-                aux->at(i,j) = image->at(i,j);
+                aux->at(i,j) = image->at(i,j); // just copy the pixels
             }
         }
         for (int x = 0; x < image->width(); x++) {
             for (int y = 0; y < image->height(); y++) {
+                // calculate the median filter of each pixel in the image and then assign it to the auxiliar image
                 Color c = find_neighbours(ws, x, y);
                 aux->at(x,y) = c;
             }
