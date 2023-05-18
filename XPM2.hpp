@@ -2,6 +2,13 @@
 #define __prog_XPM2_hpp__
 
 #include <string>
+#include <vector>
+#include <map>
+#include <fstream>
+#include <iostream>
+#include <cctype>
+#include <sstream>
+#include <iomanip>
 #include "Image.hpp"
 
 namespace prog {

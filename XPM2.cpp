@@ -1,16 +1,9 @@
 #include "XPM2.hpp"
-#include <fstream>
-#include <iostream>
-#include <cctype>
-#include <sstream>
-#include <string>
-#include <map>
-#include <iomanip>
-#include <vector>
 using namespace std;
 
 namespace prog {
 
+    // auxiliary function that puts a string in uppercase 
     string to_upper(string a){
     string res;
     for (unsigned long i = 0; i < a.length(); i++)
@@ -20,7 +13,8 @@ namespace prog {
     return res;
     }
 
-    int hex_to_dec(string num_hex){ // usar mais tarde o substr para cada 2 do hexadecimal (r/g/b)
+    // auxiliary function that transforms a hexadecimal string into a decimal integer
+    int hex_to_dec(string num_hex){ 
         int res = 0;
         char a = num_hex.at(0);
         char b = num_hex.at(1);
@@ -39,6 +33,7 @@ namespace prog {
         return res;
     }
 
+    // auxiliary function that transforms a decimal integer into a hexadecimal string
     string dec_to_hex(int num_dec){
         string res = "";
         while (num_dec > 0){
@@ -66,9 +61,9 @@ namespace prog {
         char character;
         int w,h,num_colors,c;
         Color cor;
-        map<char, Color> Colors;
+        map<char, Color> Colors; // comentar
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++) // comentar
         {
             getline(in,line);
             if (line == "! XPM2")
@@ -81,7 +76,7 @@ namespace prog {
 
         Image* imagem_final = new Image(w,h); // criar nova imagem com as dimensões propostas
 
-        for (int j = 0; j < num_colors; j++)
+        for (int j = 0; j < num_colors; j++) // comentar 
         {
             getline(in,line);
             istringstream aux(line);
@@ -93,7 +88,7 @@ namespace prog {
             Colors.insert({character, cor});
         }
 
-        for (int y = 0; y < h; y++)
+        for (int y = 0; y < h; y++) // comentar
         {
             getline(in,line);
             for (int x = 0; x < w; x++)
@@ -106,7 +101,6 @@ namespace prog {
         return imagem_final;
     }
 
-    // image to xpm2
     void saveToXPM2(const std::string& file, const Image* image) {
         int num_aux = 0;
         ofstream out(file);
@@ -115,6 +109,7 @@ namespace prog {
         w = image->width();
         h = image->height();
         map<Color, char> Colors;
+        // comentar
         for (int i = 0; i < image->width(); i++) {
             for (int j = 0; j < image->height(); j++) {
                 if (Colors.find(image->at(i, j)) == Colors.end()) {
@@ -124,10 +119,12 @@ namespace prog {
             }
         }
         out << w << " " << h << " " << num_aux << " 1" << "\n";
+        // comentar
         for (auto& pair: Colors) {
             string hex = dec_to_hex(pair.first.red()) + dec_to_hex(pair.first.green()) + dec_to_hex(pair.first.blue());
             out << pair.second << " c" << " #" << hex << "\n";
         }
+        // comentar
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
                 out << Colors[image->at(x,y)];

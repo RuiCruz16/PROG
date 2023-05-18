@@ -3,6 +3,9 @@
 
 #include <string>
 #include <fstream>
+#include <iostream>
+#include <algorithm>
+#include <vector>
 #include "Image.hpp"
 
 namespace prog

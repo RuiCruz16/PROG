@@ -1,12 +1,7 @@
-#include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <vector>
 #include "Script.hpp"
 #include "PNG.hpp"
 #include "XPM2.hpp"
 #include "Color.hpp"
-
 using namespace std;
 
 namespace prog {
@@ -308,7 +303,6 @@ namespace prog {
         // return a color with the median of red, green and blue
         return res;
     }
-
 
     // auxiliar function of the median filter
     // find the median of a vector of colors (red, green or blue)
