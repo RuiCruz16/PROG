@@ -246,67 +246,39 @@ namespace prog {
         }
         // the content of the original image isn't needed so it can be deleted (to free some memory)
         delete image;
-        // then we assign the auxiliar image to the original image
+        // then assign the auxiliar image to the original image
         image = aux;
     }
 
     void Script::rotate_left(){
-        if (image->width() == image->height()) {
-            Image* aux = new Image(image->width(), image->height()); // mesmas dimensões da original
+        // create an auxiliar image with the reversed dimensions of the original image in case the width and height of the original image are different
+        // (even if the dimensions are equal, it doesn't affect anything)
+        Image* aux = new Image(image->height(), image->width()); 
+        for (int j = 0; j < image->height(); j++) {
             for (int i = 0; i < image->width(); i++) {
-                for (int j = 0; j < image->height(); j++) {
-                    aux->at(i,j) = image->at(i,j);
-                }
+                // fill the columns (starting from the bottom) of the auxiliar image with the lines of the original image
+                aux->at(j, image->width() - i - 1) = image->at(i,j);
             }
-            for (int x = 0; x < image->width(); x++) {
-                for (int y = 0; y < image->height(); y++) {
-                    image->at(y,image->width() - x -1) = aux->at(x,y);
-                }
-            }
-            delete aux;
         }
-        else {
-            Image* aux = new Image(image->height(), image->width());
-            for (int j = 0; j < image->height(); j++) {
-                for (int i = 0; i < image->width(); i++) {
-                    aux->at(j, image->width() - i - 1) = image->at(i,j);
-                }
-            }
-            delete image;
-            image = aux;
-        }
+        delete image;
+        image = aux;
     }
 
     void Script::rotate_right(){
-        if (image->width() == image->height()) {
-            Image* aux = new Image(image->width(), image->height()); // mesmas dimensões da original
-            for (int i = 0; i < image->width(); i++) {
-                for (int j = 0; j < image->height(); j++) {
-                    aux->at(i,j) = image->at(i,j);
-                }
+        Image* aux = new Image(image->height(), image->width());
+        for (int i = 0; i < image->width(); i++) {
+            for (int j = 0; j < image->height(); j++) {
+                aux->at(image->height() - j - 1,i) = image->at(i,j);
             }
-            for (int x = 0; x < image->width(); x++) {
-                for (int y = 0; y < image->height(); y++) {
-                    image->at(image->width() - y - 1, x) = aux->at(x,y);
-                }
-            }
-            delete aux;
         }
-        else {
-            Image* aux = new Image(image->height(), image->width());
-            for (int i = 0; i < image->width(); i++) {
-                for (int j = 0; j < image->height(); j++) {
-                    aux->at(image->height() - j - 1,i) = image->at(i,j);
-                }
-            }
-            delete image;
-            image = aux;
-        }
+        delete image;
+        image = aux;
     }
 
     // auxiliar function of the median filter
     // find neighbours of a certain pixel according to the given ws
-    Color Script::find_neighbours(int ws, int x, int y){
+    // return the final median color 
+    Color Script::find_color(int ws, int x, int y){
         int max_x, max_y, min_x, min_y;
         Color res;
         min_x = max(0, x - ws / 2);
@@ -359,7 +331,7 @@ namespace prog {
         for (int x = 0; x < image->width(); x++) {
             for (int y = 0; y < image->height(); y++) {
                 // calculate the median filter of each pixel in the image and then assign it to the auxiliar image
-                Color c = find_neighbours(ws, x, y);
+                Color c = find_color(ws, x, y);
                 aux->at(x,y) = c;
             }
         }
