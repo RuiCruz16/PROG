@@ -110,6 +110,7 @@ namespace prog {
                 continue;
             }
             if (command == "xpm2_open") {
+                clear_image_if_any();
                 string file;
                 input >> file;
                 image = loadFromXPM2(file);
