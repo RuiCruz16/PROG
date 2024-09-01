@@ -2,7 +2,7 @@
 
 *Project carried out in 1 year 1 semester*
 
-![Image produced by example script](path/to/your/image.png)
+![Image produced by example script](example.jpg)
 
 ## Overview
 
