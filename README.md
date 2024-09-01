@@ -1,6 +1,6 @@
 # Image Processing Project
 
-*Project carried out in 1 year 1 semester*
+*Project carried out in 1 year 2 semester*
 
 ![Image produced by example script](example.jpg)
 
